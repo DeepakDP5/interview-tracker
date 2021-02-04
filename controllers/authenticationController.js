@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { promisify } = require('util');
 const sendEmail = require('./../email');
 const crypto = require('crypto');   
 
@@ -11,9 +12,12 @@ exports.signUp = (req, res)=>{
 exports.createUser = async (req,res)=>{
     try{
         const user = await User.create(req.body);
+        let token; 
+        token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
         res.status(201).json({
-            user:user
-        })
+            user:user,
+            token
+        });
     } catch(err){
         console.log(err);
         res.status(400).json({
@@ -120,3 +124,28 @@ exports.resetPassword = async (req,res) => {
         });
     } 
 }
+
+exports.protect = async (req,res) =>{
+    console.log(req.headers.authorization.startsWith('Bearer') === true);
+    console.log(!req.headers.authorization);
+    if(!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')){
+        console.log('err');
+        res.status(400).json({
+            message:"Please Login In"
+        });
+    }else{
+        const token = req.headers.authorization.split(' ')[1];
+        try{
+            const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+            const user = await User.findById(decode.id);
+            console.log(user);
+            res.status(200).json({
+                message:"Hii"
+            });
+        } catch(err){
+            res.status(200).json({
+                message:"Invalid User"
+            });
+        }
+    }
+};
