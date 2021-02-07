@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     },
     photo:String,
     passwordResetToken:String,
-    passwordChagedAt:String
+    passwordChangedAt:Date
 });
 
 userSchema.pre('save',async function(next){
@@ -48,6 +48,7 @@ userSchema.pre('save',async function(next){
 
 userSchema.pre('save', function(next) {
     if (!this.isModified('password') || this.isNew) {
+        console.log("test");
       return next();
     }
     this.passwordChangedAt = Date.now() - 1000;
@@ -64,7 +65,9 @@ userSchema.methods.createPasswordResetToken = function() {
 };
 
 userSchema.methods.passwordChanged = function(time) {
+    console.log(time);
     if (this.passwordChangedAt) {
+        console.log(this.passwordChagedAt);
       const changedAt = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
       return changedAt > time;
     }
