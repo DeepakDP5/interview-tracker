@@ -7,6 +7,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use('/', authRouter);
 app.get('/', (req,res) => {
+    //console.log(req.headers.cookie);
     res.render('home');
 });
 app.use((req,res) => {
