@@ -63,7 +63,7 @@ exports.login = async (req,res) => {
 }
 exports.logOut = (req, res)=>{
     res.cookie('jwt', '', { maxAge: 1 });
-    res.redirect('/');
+    res.redirect('/login');
 }
 
 exports.forgotPassword = async (req,res) =>{
@@ -126,15 +126,15 @@ exports.resetPassword = async (req,res) => {
 
 exports.protect = async (req,res,next) =>{
 
-    if(!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')){
-        res.status(400).json({
-            message:"Please Login In"
-        });
+    console.log(req.cookies.jwt)
+    if((!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) && !req.cookies['jwt']){
+        res.render('login');
     }else{
-        const token = req.headers.authorization.split(' ')[1];
+        const token = (req.cookies.jwt || req.headers.authorization.split(' ')[1]);
         try{
             const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
             const user = await User.findById(decode.id);
+            console.log(user);
             if(user.passwordChanged(decode.iat)){
                 throw new Error();
             }
@@ -143,7 +143,7 @@ exports.protect = async (req,res,next) =>{
                 next();
             }
         } catch(err){
-            res.status(200).json({
+            res.status(400).json({
                 message:"Invalid User"
             });
         }
