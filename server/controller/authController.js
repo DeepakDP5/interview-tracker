@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const aEH = require('../utility/asyncErrorHandler');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const sendEmail = require('../utility/sendEmail');
 
 const jwtToCookie = (user, status, res) => {
     const token = jwt.sign({ id: user.id }, process.env.SECRETKEY);
@@ -34,11 +35,37 @@ exports.logIn = aEH(async (req, res, next) => {
     else next(new Err('Username or password invalid', 400));
 });
 
-// exports.forgotPassword = (req, res, next) => {
-//     const { email } = req.body;
-//     const user = await User.findOne({ email });
-//     if(!user) next(new Err('Enter valid Email'));
-// }
+exports.forgotPassword = aEH(async (req, res, next) => {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if(!user) return next(new Err('User not found!!',404));
+
+    let token = `${user.id}${Date.now()}${Math.round((Math.random()*10000000))}`;
+
+    user.passwordChangeToken = token;
+    await user.save({ validateBeforeSave:false });
+
+    const link = `${req.protocol}://${req.get('host')}/api/v1/user/resetpassword/${token}`;
+
+    try {
+        const options = {
+            email: user.email,
+            subject: 'Reset Password link',
+            message: `Click <a href = "${link}">here</a> to reset your Interview Tracker account password. <br> Ignore if you did'nt request a password change.`
+        }
+        await sendEmail(options);
+        res.status(200).json({
+            status:'success',
+            message: 'Mail sent'
+        });
+    } catch(err){
+        console.log(err);
+        user.passwordChangeToken = undefined;
+        await user.save({ validateBeforeSave:false });
+        return next(new Err('Something went wrong. Please try again later.', 500)); 
+    }
+
+});
 
 exports.isLoggedIn = aEH(async (req, res, next) => {
     let token;
@@ -65,6 +92,25 @@ exports.changePassword = aEH(async (req, res, next) => {
         await user.save();
     }
     jwtToCookie(user, 200, res);
+});
+
+exports.resetPassword = aEH(async (req,res,next)=>{
+    const { newPassword, confirmNP } = req.body;
+    if(newPassword !== confirmNP) next(new Err('Passwords do not match'), 400);
+    console.log(req.params.token);
+
+    const user = await User.findOne({ passwordChangeToken: req.params.token });
+
+    console.log(user);
+
+
+    if(!user) return next(new Err('Something went wrong',400));
+
+    user.password = newPassword;
+    await user.save();
+
+    jwtToCookie(user, 200, res);
+    
 });
 
 exports.logOut = (req, res, next) => {
