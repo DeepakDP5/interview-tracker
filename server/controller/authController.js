@@ -4,6 +4,7 @@ const aEH = require('../utility/asyncErrorHandler');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const sendEmail = require('../utility/sendEmail');
+const multer  = require('multer')
 
 const jwtToCookie = (user, status, res) => {
     const token = jwt.sign({ id: user.id }, process.env.SECRETKEY);
@@ -20,6 +21,48 @@ const jwtToCookie = (user, status, res) => {
         data: { user }
     });
 }
+
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        console.log('I am running');
+        cb(null, 'public/images/user/')
+    },
+    filename: (req, file, cb) => {
+        const ext = file.mimetype.split('/')[1];
+        let name;
+        // console.log(req.body);
+        if(!req.user) {
+            name = req.username;
+        } else {
+            name = req.user.id;
+        }
+        if(!name) {
+            cb(new Err('Something went wrong', 400), false);
+        }
+        cb(null, `${name}_${Date.now()}.${ext}`);
+    }
+});
+const multerFilter = (req, file, cb) => {
+    if(!file.mimetype.startsWith('image')) {
+        cb(new Err('Not an image', 400), false);
+    } else {
+        cb(null, true);
+    }
+}
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+exports.updatePhoto = upload.single('photo');
+
+exports.updateMe = aEH(async (req, res, next) => {
+    console.log(req.body);
+    console.log(req.file);
+    let username = req.body.username || req.user.username;
+    let email = req.body.email || req.user.email;
+    let photo = req.file.filename || req.user.photo;
+    await User.findByIdAndUpdate(req.user.id, { email, username, photo });
+    res.status(200).json({
+        status: 'success'
+    });
+});
 
 exports.signUp = aEH(async (req, res, next) => {
     const { username, email, password, confirmPassword } = req.body;
@@ -99,7 +142,7 @@ exports.resetPassword = aEH(async (req,res,next)=>{
     if(newPassword !== confirmNP) next(new Err('Passwords do not match'), 400);
     console.log(req.params.token);
 
-    const user = await User.findOne({ passwordChangeToken: req.params.token });
+    const user = await User.findOne({ passwordChangeToken: req.params.token }).select('+passwordChangeToken');
 
     console.log(user);
 
@@ -107,6 +150,7 @@ exports.resetPassword = aEH(async (req,res,next)=>{
     if(!user) return next(new Err('Something went wrong',400));
 
     user.password = newPassword;
+    user.passwordChangeToken = undefined;
     await user.save();
 
     jwtToCookie(user, 200, res);
