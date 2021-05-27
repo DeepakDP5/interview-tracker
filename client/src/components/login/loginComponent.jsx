@@ -3,7 +3,7 @@ import Form from '../form/formComponent';
 import {login,signup} from '../../redux/user/userActions';
 import {connect} from 'react-redux';
 import './loginForm.scss';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import {getUserSelector} from '../../redux/user/userSelector';
 
 function LoginComponent({login,history,user,signup}) {
@@ -66,6 +66,7 @@ function LoginComponent({login,history,user,signup}) {
                             <Form  name = "password" type = "password" value = {loginData.password} id = "#password" required = {true} handleChange = {handleChange} label = "Password" />
                             <button className = "btn btn-primary" type = "submit">Submit</button> 
                             <div className = "acc" onClick = {()=> setToggle((e)=> !e) }>Create an account</div>
+                            <Link to = '/forgotpassword' className = "forgotPass">Forgot Password</Link>
                         </form>
                     </div>
             }

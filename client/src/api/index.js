@@ -13,3 +13,6 @@ export const loginUser = (body) =>API.post('/auth/login', {...body});
 export const getUser = ()=> API.get('/auth/getuser'); 
 export const logout = () => API.post('/auth/logout');
 export const signupUser = (body) => API.post('/auth/signup',{...body});
+export const forgotPassword = (body) => API.post('/auth/forgotpassword', {...body});
+export const resetPassword = (token, body) => API.post(`/auth/resetpassword/${token}`, {...body});
+export const changePassword = (body) => API.post('/auth/changepassword', {...body});

@@ -1,8 +1,8 @@
 import React from 'react'
 import Question from '../../components/question/question';
 import Page from '../../components/pagination/pagination';
-import { problemset } from '../../redux/problemset/problemSetSelector';
-import { connect } from 'react-redux';
+import {problemset} from '../../redux/problemset/problemSetSelector';
+import {connect} from 'react-redux';
 import TagsComponent from '../tagsComponent/tagsComponent';
 
 import './problemSetComponent.scss'

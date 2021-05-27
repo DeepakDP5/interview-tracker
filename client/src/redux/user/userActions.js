@@ -1,4 +1,4 @@
-import {loginUser,getUser,logout,signupUser} from '../../api/index';
+import {loginUser, getUser, logout, signupUser} from '../../api/index';
 import types from './types';
 
 export const fetchSuccess = (data) => {
@@ -34,7 +34,7 @@ export const login = (body,history) => {
     }
 };
 
-export const signup = (body,history) => {
+export const signup = (body, history) => {
     console.log(body);
     return async dispatch => {
         dispatch(fetchStart());

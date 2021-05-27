@@ -13,8 +13,8 @@ const userReducer = (state = INITIAL_STATE, action) =>{
             isLoading: true
         })
         case types.FETCH_SUCCESS: return({
-            ...state,
-            user : action.payload,
+            error: undefined,
+            user: action.payload,
             isLoading: false
         })
         case types.FETCH_FAIL : return({

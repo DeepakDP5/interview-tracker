@@ -10,7 +10,8 @@ const jwtToCookie = (user, status, res) => {
     const token = jwt.sign({ id: user.id }, process.env.SECRETKEY);
     const cookieOptions = {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-        httpOnly: process.env.NODE_ENV === 'production' ? true : false,
+        // httpOnly: process.env.NODE_ENV === 'production' ? true : false,
+        httpOnly: true,
         secure: process.env.NODE_ENV === 'production' ? true : false
     };
     user.password = undefined;
@@ -90,7 +91,9 @@ exports.forgotPassword = aEH(async (req, res, next) => {
     user.passwordChangeToken = token;
     await user.save({ validateBeforeSave:false });
 
-    const link = `${req.protocol}://${req.get('host')}/api/v1/auth/resetpassword/${token}`;
+    // const link = `${req.protocol}://${req.get('host')}/api/v1/auth/resetpassword/${token}`;
+    const link = `${req.protocol}://localhost:3000/forgotpassword/token/${token}`;
+    console.log(link);
 
     try {
         const options = {
@@ -109,7 +112,6 @@ exports.forgotPassword = aEH(async (req, res, next) => {
         await user.save({ validateBeforeSave:false });
         return next(new Err('Something went wrong. Please try again later.', 500)); 
     }
-
 });
 
 exports.isLoggedIn = aEH(async (req, res, next) => {

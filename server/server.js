@@ -10,16 +10,17 @@ dotenv.config({
 const DB = process.env.DB.replace('<password>', process.env.PASSWORD);
 
 mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log('DB connection successful!'))
-  .catch(e => {
-      console.log(e);
-  })
+    .connect(DB, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+    })
+    .then(() => console.log('DB connection successful!'))
+    .catch(e => {
+        console.log(e);
+    })
+
 app.listen(port, () =>{
     console.log("Hello from the server side...");
 });
