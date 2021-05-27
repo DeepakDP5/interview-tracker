@@ -56,7 +56,12 @@ export const fetchUser = () => {
         try {
             const res = await getUser();
             console.log(res);
-            dispatch(fetchSuccess(res.data.user));
+            if(res.data.user === null){
+                console.log('hello');
+            }
+
+            const user = res.data.user ? res.data.user : undefined;
+            dispatch(fetchSuccess(user));
         } catch (err) {
             console.log(err);
             dispatch(fetchFail(err.message));

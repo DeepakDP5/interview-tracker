@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import Header from './components/header/header';
 import {Route, Switch, withRouter, Redirect} from "react-router-dom";
 import ProblemSet from './pages/problemset/problemSet';
@@ -8,7 +8,6 @@ import {fetchUser, logoutUser} from './redux/user/userActions';
 import {connect} from 'react-redux';
 import ForgotPasswordPage from './pages/login/forgotPassword';
 import ProfilePage from './pages/user/profilePage';
-import {getUserSelector} from './redux/user/userSelector';
 
 import './App.scss';
 
@@ -17,7 +16,6 @@ const Home = () => {
 }
 
 const Logout = ({fn}) => {
-    console.log(fn);
     fn();
     return <Redirect to = '/problemset'/>
 };
@@ -28,12 +26,10 @@ const Error404 = () => {
 
 const App = ({fetchUser,logoutUser, user}) => {
 
-    const [state, setState] = useState(null);
-
     useEffect(() => {
         fetchUser();
-        setState(user);
-    }, []);
+        
+    }, [fetchUser]);
 
     return (
         <div>
@@ -44,7 +40,7 @@ const App = ({fetchUser,logoutUser, user}) => {
                 <Route path='/login' component={ Login }/>
                 <Route path='/logout'><Logout fn = {logoutUser}/></Route>
                 <Route path='/forgotpassword' component={ForgotPasswordPage}></Route>
-                <Route path='/profile' component = {ProfilePage}></Route>
+                <Route path='/:user/profile' component = {ProfilePage}></Route>
                 <Route path = '*' component = {Error404}/>
             </Switch>
         </div>
@@ -57,8 +53,5 @@ const mapDispatchToProps = (dispatch) => ({
     logoutUser: () => dispatch(logoutUser())
 });
 
-const mapStateToProps = (state) => ({
-    user: getUserSelector(state)
-});
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));
+export default withRouter(connect(null,mapDispatchToProps)(App));

@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 
 const Header = ({user}) =>{
     const [showCollapsedMenu, setState] = useState(false);
-
     const toggleMenu = ()=>{
         setState(e => !e);
     }
@@ -20,9 +19,14 @@ const Header = ({user}) =>{
             <ul className="navbar-nav ml-auto">
             {
                 user ? 
-                        <li className="nav-item">
-                        <Link className="nav-link" to="/logout">Logout</Link>
-                        </li>
+                        <div>
+                            <li className="nav-item ">
+                                <Link className="nav-link" to = {`/${user.username}/profile`}>Profile<span className="sr-only">(current)</span></Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/logout">Logout</Link>
+                            </li>
+                        </div>
                     :  
                     <li className="nav-item ">
                         <Link className="nav-link" to = '/login'>Login<span className="sr-only">(current)</span></Link>

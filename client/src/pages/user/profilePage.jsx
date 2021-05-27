@@ -1,30 +1,30 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getUserSelector, isLoaded} from '../../redux/user/userSelector.js';
-import {Switch, Route, useHistory, useLocation, Redirect} from 'react-router-dom';
+import {getUserSelector} from '../../redux/user/userSelector.js';
+import {Switch, Route,Redirect,withRouter,Link} from 'react-router-dom';
 import ResetPassword from '../../components/login/resetPassword'
 
-const Temp = () => {
+const Temp = ({match}) => {
     return (
+        <div>
         <h2>PP</h2>
+        <Link to = {`${match.url}/resetpassword`}>Change Password</Link>
+        </div>
     )
 }
 
-const ProfilePage = ({user, isLoaded}) => {
-    const history = useHistory();
-    const location = useLocation();
-    console.log(user);
-    if (!user) {
+const ProfilePage = ({user,match}) => {
+   
+     if (user === undefined) {
         console.log('Not User');
         return <Redirect to = '/login'></Redirect>;
     }
 
-    console.log(location);
     return (
         <div>
             <Switch>
-                <Route exact path = {'/profile'} component = {Temp}></Route>
-                <Route exact path = {'/profile/resetpassword'} component = {ResetPassword}></Route>
+                <Route exact path = {`${match.path}`}><Temp match = {match}/></Route>
+                <Route exact path = {`${match.path}/resetpassword`} component = {ResetPassword}></Route>
             </Switch>
         </div>
     )
@@ -32,7 +32,6 @@ const ProfilePage = ({user, isLoaded}) => {
 
 const mapStateToProps = (state) => ({
     user: getUserSelector(state),
-    isLoaded: isLoaded(state)
 });
   
-export default connect(mapStateToProps)(ProfilePage);
+export default withRouter(connect(mapStateToProps)(ProfilePage));
