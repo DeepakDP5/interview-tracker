@@ -1,4 +1,4 @@
-import {getQuestions} from '../../api/index';
+import {getQuestions,getTopicwiseQuestion} from '../../api/index';
 import types from './actionType';
 
 export const fetchingSuccess = (data) => {
@@ -23,5 +23,13 @@ export const fetchQuestions = (page,questionPerPage) => {
         dispatch(fetchStart());
         const res = await getQuestions(page,questionPerPage);
         dispatch(fetchingSuccess(res.data.data.question));
+    }
+};
+
+export const fetchTopicwise = (topic) => {
+    return async dispatch => {
+        dispatch(fetchStart());
+        const res = await getTopicwiseQuestion(topic);
+        dispatch(fetchingSuccess(res.data.data.questions));
     }
 };

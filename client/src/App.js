@@ -8,6 +8,7 @@ import {fetchUser, logoutUser} from './redux/user/userActions';
 import {connect} from 'react-redux';
 import ForgotPasswordPage from './pages/login/forgotPassword';
 import ProfilePage from './pages/user/profilePage';
+import Errorpage from './pages/errorpage';
 
 import './App.scss';
 
@@ -20,15 +21,10 @@ const Logout = ({fn}) => {
     return <Redirect to = '/problemset'/>
 };
 
-const Error404 = () => {
-    return <h1>Error</h1>;
-}
-
 const App = ({fetchUser,logoutUser, user}) => {
 
     useEffect(() => {
         fetchUser();
-        
     }, [fetchUser]);
 
     return (
@@ -40,8 +36,8 @@ const App = ({fetchUser,logoutUser, user}) => {
                 <Route path='/login' component={ Login }/>
                 <Route path='/logout'><Logout fn = {logoutUser}/></Route>
                 <Route path='/forgotpassword' component={ForgotPasswordPage}></Route>
-                <Route path='/:user/profile' component = {ProfilePage}></Route>
-                <Route path = '*' component = {Error404}/>
+                <Route path='/:username/profile' component = {ProfilePage}></Route>
+                <Route path = '*' component = {Errorpage}/>
             </Switch>
         </div>
     );

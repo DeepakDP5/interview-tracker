@@ -1,7 +1,8 @@
 const types = {
     FETCHING_START: 'FETCHING_START_3',
     FETCH_SUCCESS: 'FETCH_SUCCESS_3',
-    FETCH_FAIL: 'FETCH_FAIL_3'
+    FETCH_FAIL: 'FETCH_FAIL_3',
+    TOGGLE_SOLVED: 'TOGGLE_SOLVED'
 };
 
 export default types;

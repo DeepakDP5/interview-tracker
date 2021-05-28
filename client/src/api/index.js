@@ -16,3 +16,4 @@ export const signupUser = (body) => API.post('/auth/signup',{...body});
 export const forgotPassword = (body) => API.post('/auth/forgotpassword', {...body});
 export const resetPassword = (token, body) => API.post(`/auth/resetpassword/${token}`, {...body});
 export const changePassword = (body) => API.post('/auth/changepassword', {...body});
+export const toggleSolved = (id) => API.post(`/user/updatesolved/${id}`);
