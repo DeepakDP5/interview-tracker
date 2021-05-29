@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import ForgotPasswordPage from './pages/login/forgotPassword';
 import ProfilePage from './pages/user/profilePage';
 import Errorpage from './pages/errorpage';
+import {getUserSelector} from './redux/user/userSelector';
 
 import './App.scss';
 
@@ -24,6 +25,7 @@ const Logout = ({fn}) => {
 const App = ({fetchUser,logoutUser, user}) => {
 
     useEffect(() => {
+
         fetchUser();
     }, [fetchUser]);
 
@@ -44,10 +46,15 @@ const App = ({fetchUser,logoutUser, user}) => {
 };
 
 
+const mapStateToProps = (state) => ({
+    user: getUserSelector(state),
+});
+
+
 const mapDispatchToProps = (dispatch) => ({
     fetchUser: () => dispatch(fetchUser()),
     logoutUser: () => dispatch(logoutUser())
 });
 
 
-export default withRouter(connect(null,mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));

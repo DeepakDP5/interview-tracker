@@ -26,8 +26,8 @@ export const login = (body,history) => {
             dispatch(fetchSuccess(res.data.user));
             history.replace('/problemset');
         } catch (err) {
-            console.log(err);
-            dispatch(fetchFail(err.message));
+            dispatch(fetchFail(err.response.data.message));
+            alert(err.response.data.message);
         }
     }
 };
@@ -40,8 +40,8 @@ export const signup = (body, history) => {
             dispatch(fetchSuccess(res.data.user));
             history.replace('/problemset');
         } catch (err) {
-            console.log(err);
-            dispatch(fetchFail(err.message));
+            dispatch(fetchFail(err.response.data.message));
+            alert(err.response.data.message);
         }
     }
 };
@@ -59,8 +59,8 @@ export const fetchUser = () => {
             const user = res.data.user ? res.data.user : undefined;
             dispatch(fetchSuccess(user));
         } catch (err) {
-            console.log(err);
-            dispatch(fetchFail(err.message));
+            dispatch(fetchFail(err.response.data.message));
+            alert(err.response.data.message);
         }
     }
 };
@@ -71,3 +71,10 @@ export const logoutUser = () =>{
         dispatch(fetchSuccess(null));
     }
 };
+
+export const updatePhoto = (data) => {
+    return {
+        type: types.UPDATE_PHOTO,
+        payload: data
+    }
+}

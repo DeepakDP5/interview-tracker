@@ -21,7 +21,7 @@ const Header = ({user}) =>{
                 user ? 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to = {`/${user.username}/profile`}>Profile<span className="sr-only">(current)</span></Link>
+                            <Link className="nav-link" to = {`/${user.username}/profile`}>{user.username}<span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/logout">Logout</Link>

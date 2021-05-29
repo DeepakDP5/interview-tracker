@@ -1,6 +1,6 @@
 import types from "./types";
 
-const helper =  (user,id) => {
+const toggleSolvedStatus =  (user,id) => {
     let solved = user.solved;
     if(!solved.length){
         return user;
@@ -15,6 +15,11 @@ const helper =  (user,id) => {
     user.solved = solved;
     return user;
 };
+
+const updateProfilePhoto = (user, data) => {
+    user.photo = data;
+    return user;
+}
 
 const INITIAL_STATE = {
     user: null,
@@ -41,7 +46,12 @@ const userReducer = (state = INITIAL_STATE, action) =>{
         })
         case types.TOGGLE_SOLVED : return({
             ...state,
-            user : helper(state.user,action.payload)
+            user: toggleSolvedStatus(state.user, action.payload)
+        })
+
+        case types.UPDATE_PHOTO : return({
+            ...state,
+            user: updateProfilePhoto(state.user, action.payload)
         })
 
         default : return ({
