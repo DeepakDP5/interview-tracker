@@ -1,7 +1,8 @@
+/* eslint-disable eqeqeq */
 import types from "./types";
 
 const toggleSolvedStatus =  (user,id) => {
-    let solved = user.solved;
+    let solved = user.solved;   
     if(!solved.length){
         return user;
     }else{

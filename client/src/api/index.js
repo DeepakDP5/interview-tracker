@@ -17,4 +17,5 @@ export const forgotPassword = (body) => API.post('/auth/forgotpassword', {...bod
 export const resetPassword = (token, body) => API.post(`/auth/resetpassword/${token}`, {...body});
 export const changePassword = (body) => API.post('/auth/changepassword', {...body});
 export const toggleSolved = (id) => API.post(`/user/updatesolved/${id}`);
-export const updateDetails = (data) => API.post(`/auth/updateme`, data);
+export const updateDetails = (data) => API.post(`/auth/updateme`, {...data});
+export const updateProfilePhoto = (data) => API.post(`/auth/updateme`,data);

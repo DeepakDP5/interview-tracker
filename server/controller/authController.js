@@ -51,7 +51,14 @@ exports.updatePhoto = upload.single('photo');
 exports.updateMe = aEH(async (req, res, next) => {
     let username = req.body.username || req.user.username;
     let email = req.body.email || req.user.email;
-    let photo = req.file.filename || req.user.photo;
+    let photo;
+    if(req.file){
+        photo = req.file.filename;
+    }
+    if(!photo){
+        photo = req.user.photo
+    }
+    
     await User.findByIdAndUpdate(req.user.id, { email, username, photo });
     res.status(200).json({
         photo: photo,
