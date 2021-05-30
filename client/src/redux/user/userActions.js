@@ -59,8 +59,8 @@ export const fetchUser = () => {
             const user = res.data.user ? res.data.user : undefined;
             dispatch(fetchSuccess(user));
         } catch (err) {
-            dispatch(fetchFail(err.response.data.message));
-            alert(err.response.data.message);
+            dispatch(fetchFail(err.response?.data.message));
+            alert(err.response?.data.message);
         }
     }
 };

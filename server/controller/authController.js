@@ -67,6 +67,7 @@ exports.updateMe = aEH(async (req, res, next) => {
 });
 
 exports.signUp = aEH(async (req, res, next) => {
+
     const { username, email, password, confirmPassword } = req.body;
     if(password !== confirmPassword) next(new Err('Passwords do not match',400));
     const newUser = await User.create({ username, password, email });

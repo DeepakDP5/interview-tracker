@@ -31,7 +31,7 @@ commentSchema.pre(/^find/,function(next){
     });
     
     next();
-})
+});
 
 
 const Comment = mongoose.model('comment', commentSchema);

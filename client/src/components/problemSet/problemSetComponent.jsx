@@ -10,7 +10,6 @@ import TagsComponent from '../tagsComponent/tagsComponent';
 import './problemSetComponent.scss'
 
 const ProblemSetComponent = ({ questionPerPage, paginate, page, problemset,user,topic}) => {
-    console.log(topic);
     const tp = topic || "All Questions";
     return (
         <div className="d-flex justify-content-around flex-wrap">

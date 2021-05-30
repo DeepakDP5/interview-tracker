@@ -10,6 +10,7 @@ import ForgotPasswordPage from './pages/login/forgotPassword';
 import ProfilePage from './pages/user/profilePage';
 import Errorpage from './pages/errorpage';
 import {getUserSelector} from './redux/user/userSelector';
+import PersonalProblemset from './pages/personalProblemSet/personalProblemset';
 
 import './App.scss';
 
@@ -37,8 +38,9 @@ const App = ({fetchUser,logoutUser, user}) => {
                 <Route path='/problemset' component={ ProblemSet }/>
                 <Route path='/login' component={ Login }/>
                 <Route path='/logout'><Logout fn = {logoutUser}/></Route>
-                <Route path='/forgotpassword' component={ForgotPasswordPage}></Route>
-                <Route path='/:username/profile' component = {ProfilePage}></Route>
+                <Route path='/forgotpassword' component={ForgotPasswordPage}/>
+                <Route path='/:username/profile' component = {ProfilePage}/>
+                <Route path='/list' component = {PersonalProblemset}/>
                 <Route path = '*' component = {Errorpage}/>
             </Switch>
         </div>

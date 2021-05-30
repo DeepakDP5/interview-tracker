@@ -24,6 +24,9 @@ const Header = ({user}) =>{
                             <Link className="nav-link" to = {`/${user.username}/profile`}>{user.username}<span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
+                            <Link className="nav-link" to = {`/list`}>My List<span className="sr-only">(current)</span></Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link" to="/logout">Logout</Link>
                         </li>
                     </ul>
