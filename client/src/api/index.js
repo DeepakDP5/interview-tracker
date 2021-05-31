@@ -19,3 +19,4 @@ export const changePassword = (body) => API.post('/auth/changepassword', {...bod
 export const toggleSolved = (id) => API.post(`/user/updatesolved/${id}`);
 export const updateDetails = (data) => API.post(`/auth/updateme`, {...data});
 export const updateProfilePhoto = (data) => API.post(`/auth/updateme`,data);
+export const addProblems = (id, data) => API.post(`/user/addproblem/${id}`, {...data});

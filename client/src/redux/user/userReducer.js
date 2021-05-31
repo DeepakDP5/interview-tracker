@@ -17,6 +17,14 @@ const toggleSolvedStatus =  (user,id) => {
     return user;
 };
 
+const addProblem = (user, {data, id}) => {
+    let problemsets = user.problemsets;
+    let playlist = problemsets.find(el => el._id == id);
+    playlist.list.push(data);
+    user.problemsets = problemsets;
+    return user;
+}
+
 const updateProfilePhoto = (user, data) => {
     user.photo = data;
     return user;
@@ -53,6 +61,11 @@ const userReducer = (state = INITIAL_STATE, action) =>{
         case types.UPDATE_PHOTO : return({
             ...state,
             user: updateProfilePhoto(state.user, action.payload)
+        })
+
+        case types.ADD_PROBLEM : return({
+            ...state,
+            user: addProblem(state.user, action.payload)
         })
 
         default : return ({

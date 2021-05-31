@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import Header from './components/header/header';
 import {Route, Switch, withRouter, Redirect} from "react-router-dom";
-import ProblemSet from './pages/problemset/problemSet';
+import ProblemPage from './pages/problemset/problemPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/login/login';
 import {fetchUser, logoutUser} from './redux/user/userActions';
@@ -35,7 +35,7 @@ const App = ({fetchUser,logoutUser, user}) => {
         <Header/>
             <Switch>
                 <Route exact path='/'><Home/></Route>
-                <Route path='/problemset' component={ ProblemSet }/>
+                <Route path='/problemset' component={ ProblemPage }/>
                 <Route path='/login' component={ Login }/>
                 <Route path='/logout'><Logout fn = {logoutUser}/></Route>
                 <Route path='/forgotpassword' component={ForgotPasswordPage}/>

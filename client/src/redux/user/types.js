@@ -4,6 +4,7 @@ const types = {
     FETCH_FAIL: 'FETCH_FAIL_3',
     TOGGLE_SOLVED: 'TOGGLE_SOLVED',
     UPDATE_PHOTO: 'UPDATE_PHOTO',
+    ADD_PROBLEM: 'ADD_PROBLEM',
 };
 
 export default types;
