@@ -20,3 +20,5 @@ export const toggleSolved = (id) => API.post(`/user/updatesolved/${id}`);
 export const updateDetails = (data) => API.post(`/auth/updateme`, {...data});
 export const updateProfilePhoto = (data) => API.post(`/auth/updateme`,data);
 export const addProblems = (id, data) => API.post(`/user/addproblem/${id}`, {...data});
+export const addList = (body) => API.post('/user/createproblemset', {...body});
+export const addToFavorite = (body) => API.post('/user/addtofavorite', {...body});

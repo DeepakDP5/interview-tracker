@@ -85,3 +85,11 @@ export const addProblem = (data, id) => {
         payload: {data, id}
     }
 };
+
+export const addAList = (data) => {
+    console.log(data);
+    return {
+        type: types.ADD_A_LIST,
+        payload: data
+    }
+}

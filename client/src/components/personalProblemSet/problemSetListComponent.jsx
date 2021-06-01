@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import ListItem from './listItem';
-import Form from '../form/formComponent';
 import {addProblems} from '../../api/index';
 import {addProblem} from '../../redux/user/userActions.js';
 import {connect} from 'react-redux';
+import NewListItemForm from './newListItemForm';
+
+
 
 function ProblemSetListComponent({playlist, addProblem}) {
 
     const [formstate, setformstate] = useState(false);
-
     const [formdata, setformdata] = useState({
         title: '',
         topic: '',
@@ -44,27 +45,17 @@ function ProblemSetListComponent({playlist, addProblem}) {
             <ol className="list-group">
             {
                 playlist?.list?.map((el, i) =>(
-                    <ListItem key = {el._id} el = {el} />
+                    <ListItem key = {i} el = {el} />
                 ))
             }
             </ol>
 
             <div>
                 {
-                    formstate ?
-                        <div>
-                            <br/>
-                            <button className="btn btn-primary" onClick = {() => setformstate(e => !e)}>Change State</button>
-                            <br/>
-                            <form onSubmit = {handleSubmit}>
-                                <Form name = "title" type = "text" value = {formdata.title} className="form-control" id="#title" handleChange = {handleChange} required = {true} label = "Title"/>
-                                <Form name = "link" type = "text" value = {formdata.link} className="form-control" id="#link" handleChange = {handleChange} required = {true} label = "Link"/>
-                                <Form name = "topic" type = "text" value = {formdata.topic} className="form-control" id="#topic" handleChange = {handleChange} required = {false} label = "Topic"/>
-                                <input type = "submit" className="btn btn-primary" value = "submit"/>
-                            </form>
-                        </div>
+                    formstate ? 
+                        <NewListItemForm handleSubmit = {handleSubmit} handleChange = {handleChange} {...formdata} />
                     :
-                        <button className="btn btn-primary" onClick = {() => setformstate(e => !e)}>Add Problem</button>
+                        <button className="btn btn-primary mt-3" onClick = {() => setformstate(e => !e)}>Add Problem</button>
                 }
             </div>
         </div>

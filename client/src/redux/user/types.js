@@ -5,6 +5,7 @@ const types = {
     TOGGLE_SOLVED: 'TOGGLE_SOLVED',
     UPDATE_PHOTO: 'UPDATE_PHOTO',
     ADD_PROBLEM: 'ADD_PROBLEM',
+    ADD_A_LIST: 'ADD_A_LIST',
 };
 
 export default types;

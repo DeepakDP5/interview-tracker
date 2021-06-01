@@ -3,7 +3,7 @@ const aEH = require('../utility/asyncErrorHandler');
 const Err = require('../utility/error');
 const Question = require('../models/questionModel');
 const { ProblemSet, Problem } = require('../models/personalProblemSetModel');
-const { mapReduce } = require('../models/userModel');
+
 
 exports.getAllUsers = aEH(async (req, res, next) => {
     const users = await User.find();
@@ -117,6 +117,27 @@ exports.removeFriend = aEH(async (req, res, next) => {
         status: 'success'
     });
 });
+
+exports.addToFavorite =  aEH(async (req, res, next) => {
+    const {link,title,topic} = req.body;
+    const newProblem = await Problem.create({link,title,topic});
+    const user = req.user;
+    let problemsets = user.problemsets;
+    let arr = problemsets.find(el => el.name === 'Favorite');
+    const id = newProblem.id;
+    arr.list.push(id);
+    const problemset = await ProblemSet.findByIdAndUpdate(arr.id,{list:arr.list},{new: true});
+
+    const usr = await User.findById(user.id);
+
+    problemsets = usr.problemsets;
+
+    res.status(200).json({
+        problemsets
+    });
+
+});
+
 
 // exports.likeProblemSet = aEH(async (req, res, next) => {
 //     const id = req.params.id;

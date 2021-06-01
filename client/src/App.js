@@ -26,7 +26,6 @@ const Logout = ({fn}) => {
 const App = ({fetchUser,logoutUser, user}) => {
 
     useEffect(() => {
-
         fetchUser();
     }, [fetchUser]);
 
