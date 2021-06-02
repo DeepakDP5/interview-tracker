@@ -138,6 +138,18 @@ exports.addToFavorite =  aEH(async (req, res, next) => {
 
 });
 
+exports.deleteList = aEH(async (req, res, next) => {
+    const id = req.params.id;
+    await ProblemSet.findByIdAndDelete(id);
+    let playlist = req.user.problemsets;
+    playlist = playlist.filter(e => e.id != id);
+    const user = await User.findByIdAndUpdate(req.user.id, {problemsets: playlist}, {new: true});
+    problemsets = user.problemsets
+    res.status(200).json({
+        problemsets
+    })
+})
+
 
 // exports.likeProblemSet = aEH(async (req, res, next) => {
 //     const id = req.params.id;

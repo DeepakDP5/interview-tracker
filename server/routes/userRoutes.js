@@ -13,6 +13,8 @@ router.post('/friendrequests/:id', userController.friendRequests);
 router.post('/addfriend/:id', userController.addFriend);
 router.post('/removefriend/:id', userController.removeFriend);
 router.post('/addtofavorite',userController.addToFavorite);
+router.delete('/list/:id', userController.deleteList);
+// router.delete('/listitem', userController.deleteListItem);
 // router.post('/like/:id', userController.likeProblemSet);
 
 module.exports = router;
