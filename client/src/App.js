@@ -11,6 +11,7 @@ import ProfilePage from './pages/user/profilePage';
 import Errorpage from './pages/errorpage';
 import {getUserSelector} from './redux/user/userSelector';
 import PersonalProblemset from './pages/personalProblemSet/personalProblemset';
+import Test from './components/modal/test';
 
 import './App.scss';
 
@@ -40,6 +41,7 @@ const App = ({fetchUser,logoutUser, user}) => {
                 <Route path='/forgotpassword' component={ForgotPasswordPage}/>
                 <Route path='/:username/profile' component = {ProfilePage}/>
                 <Route path='/list' component = {PersonalProblemset}/>
+                <Route path = '/test' component = {Test}/>
                 <Route path = '*' component = {Errorpage}/>
             </Switch>
         </div>

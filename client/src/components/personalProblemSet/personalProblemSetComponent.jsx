@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import {connect} from 'react-redux';
 import {useLocation,useHistory} from 'react-router-dom';
 import queryString from 'query-string';
@@ -7,10 +7,11 @@ import ProblemSetItem from './problemSetItem';
 import {addList} from '../../api/index';
 import CreateProblemset from './createProblemset';
 import {addAList} from '../../redux/user/userActions';
-
-
-
+import ModalWrapper from './../modal/modal';
 import './list.scss';
+
+
+const Modal = ModalWrapper(CreateProblemset);
 
 
 function PersonalProblemSetComponent({user,addAList}) {
@@ -19,7 +20,7 @@ function PersonalProblemSetComponent({user,addAList}) {
     const history = useHistory();
     let val = queryString.parse(loc.search);
 
-    const [showForm,setShowForm] = useState(false);
+    const [modalShow1,setShowModal1] = useState(false);
 
     const [formData,setFormData] = useState({
         name: '',
@@ -34,7 +35,7 @@ function PersonalProblemSetComponent({user,addAList}) {
         try{
            const res = await addList(formData);
            addAList(res.data.updatedProblemSet.problemsets);
-            setShowForm((e) => !e);
+            setShowModal1((e) => !e);
             setFormData({
                 name: '',
             });        
@@ -43,9 +44,6 @@ function PersonalProblemSetComponent({user,addAList}) {
         }
     }
 
-    useEffect(()=>{
-        console.log(showForm);
-    },[showForm])
 
     const func = (name)=>{
         history.push(`${loc.pathname}?name=${name}`)
@@ -55,27 +53,30 @@ function PersonalProblemSetComponent({user,addAList}) {
         playlist = user.problemsets.find(el => el.name === val.name) || [];
     }
     return (
-        <div className = "d-flex justify-content-start flex-wrap">
-            <ol className="playlists">
-            {
-                user ? 
-                user.problemsets.map(e => (
-                    <ProblemSetItem key = {e._id} func = {func} el = {e}/>
-                ))
-                :
-                null
-            }
-            {
-                showForm ? <CreateProblemset handleSubmit = {handleSubmit} handleChange = {handleChange} {...formData} /> : <button onClick={() => setShowForm((e) => !e) }  className="btn btn-primary mt-3">Add List</button>
-            }
-            </ol>
-            <div className = "list">
-            {
-                (user && val.name) ?
-                <ProblemSetListComponent playlist={playlist}/> : null
-            }
+        <div>
+            <h2 className="ml-3">My list</h2>
+            <div  className = "d-flex justify-content-start flex-wrap">
+                <ol className="playlists">
+                {
+                    user ? 
+                    user.problemsets.map(e => (
+                        <ProblemSetItem key = {e._id} func = {func} el = {e}/>
+                    ))
+                    :
+                    null
+                }
+                {
+                    modalShow1 ? null : <button onClick={() => setShowModal1(true)}  className="btn btn-primary mt-3">Add List</button>
+                }
+                <Modal onHide={() => setShowModal1(false)} show = {modalShow1} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formData}/>
+                </ol>
+                <div className = "list">
+                {
+                    (user && val.name) ?
+                    <ProblemSetListComponent playlist={playlist}/> : null
+                }
+                </div>
             </div>
-
         </div>
     )
 };

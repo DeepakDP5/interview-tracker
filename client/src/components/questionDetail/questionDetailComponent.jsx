@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import CommentComponent from '../comment/commentComponent';
 import {addToFavorite} from '../../api/index';
 import { addAList } from '../../redux/user/userActions';
+import {getUserSelector} from '../../redux/user/userSelector';
 
 const handleClick = async (question,addAList) => {
     const data = {
@@ -20,12 +21,15 @@ const handleClick = async (question,addAList) => {
     }
 };
 
-function QuestionDetailComponent({question,addAList}) {
+function QuestionDetailComponent({question,addAList,user}) {
     return (
         <div>
         <h3>{question?.title}</h3>
         <a href = {question?.link} target = '_blank' rel="noreferrer">Click Here</a>
-        <button className = 'btn btn-primary' onClick = {(e) => { e.preventDefault(); return handleClick(question,addAList)}} >Add to Favorite</button>
+        {
+            <button className = 'btn btn-primary' onClick = {(e) => { e.preventDefault(); return handleClick(question,addAList)}} >Add to Favorite</button>
+        }
+        
         <CommentComponent comments = {question.comments}/>  
     </div>
     )
@@ -33,6 +37,7 @@ function QuestionDetailComponent({question,addAList}) {
 
 const mapStateToProps = (state)=>({
     question : question(state),
+    user: getUserSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
