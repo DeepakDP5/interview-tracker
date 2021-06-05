@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {useLocation,useHistory} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
 import queryString from 'query-string';
 import ProblemSetListComponent from './problemSetListComponent';
 import ProblemSetItem from './problemSetItem';
@@ -8,13 +8,14 @@ import {addList} from '../../api/index';
 import CreateProblemset from './createProblemset';
 import {addAList} from '../../redux/user/userActions';
 import ModalWrapper from './../modal/modal';
+import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector';
 import './list.scss';
 
 
 const Modal = ModalWrapper(CreateProblemset);
 
 
-function PersonalProblemSetComponent({user,addAList}) {
+function PersonalProblemSetComponent({user,addAList, problemset}) {
 
     const loc  = useLocation();
     const history = useHistory();
@@ -34,16 +35,16 @@ function PersonalProblemSetComponent({user,addAList}) {
         e.preventDefault();
         try{
            const res = await addList(formData);
+           console.log(res);
            addAList(res.data.updatedProblemSet.problemsets);
             setShowModal1((e) => !e);
             setFormData({
                 name: '',
-            });        
+            });
         } catch(err){
             alert(err.response?.data?.message);
         }
     }
-
 
     const func = (name)=>{
         history.push(`${loc.pathname}?name=${name}`)
@@ -59,7 +60,7 @@ function PersonalProblemSetComponent({user,addAList}) {
                 <ol className="playlists">
                 {
                     user ? 
-                    user.problemsets.map(e => (
+                    problemset.map(e => (
                         <ProblemSetItem key = {e._id} func = {func} el = {e}/>
                     ))
                     :
@@ -73,7 +74,7 @@ function PersonalProblemSetComponent({user,addAList}) {
                 <div className = "list">
                 {
                     (user && val.name) ?
-                    <ProblemSetListComponent playlist={playlist}/> : null
+                    <ProblemSetListComponent playlist={playlist} /> : null
                 }
                 </div>
             </div>
@@ -82,7 +83,8 @@ function PersonalProblemSetComponent({user,addAList}) {
 };
 
 const mapStateToProps = (state) =>({
-    user: state.user.user,
+    user: getUserSelector(state),
+    problemset: getUserProblemset(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

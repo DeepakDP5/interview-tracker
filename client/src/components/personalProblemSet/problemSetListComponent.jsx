@@ -35,6 +35,7 @@ function ProblemSetListComponent({playlist, addProblem}) {
         e.preventDefault();
         try {
             setModalShow(false);
+            console.log(playlist._id);
             await addProblems(playlist._id, formdata);
             addProblem(formdata, playlist._id);
             setformdata({
@@ -55,7 +56,7 @@ function ProblemSetListComponent({playlist, addProblem}) {
             <ol className="list-group">
             {
                 playlist?.list?.map((el, i) =>(
-                    <ListItem key = {i} el = {el} />
+                    <ListItem key = {i} el = {el} sid = {playlist._id} />
                 ))
             }
             </ol>
