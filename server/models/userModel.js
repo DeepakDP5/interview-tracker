@@ -50,9 +50,13 @@ const userSchema = mongoose.Schema({
     versionKey: false
 });
 
-userSchema.pre(/^find/,function(next){
+userSchema.pre(/^find/,function(next) {
     this.populate({
         path:'problemsets',
+    });
+    this.populate({
+        path:'friends',
+        select: '-password -email -passwordChangeToken -solved -friendRequests -friends -problemsets',
     });
     next();
 });

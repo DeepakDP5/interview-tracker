@@ -14,9 +14,7 @@ exports.getAllUsers = aEH(async (req, res, next) => {
 });
 
 exports.getUser = aEH(async (req, res, next) => {
-    let query = User.findOne({ username: req.params.username });
-    query = query.populate({ path: 'friendRequests', select: '-solved -friendRequests -problemsets -__v' });
-    query = query.populate({ path: 'friends', select: '-solved -friendRequests -__v' });
+    let user = await User.findOne({ username: req.params.username });
     if(!user) return next(new Err('User does not exist', 400));
     res.status(200).json({
         status: 'success',

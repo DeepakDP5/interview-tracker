@@ -5,8 +5,6 @@ import CommentComponent from '../comment/commentComponent';
 import {addToFavorite} from '../../api/index';
 import { addAList } from '../../redux/user/userActions';
 import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector';
-import Form from '../form/formComponent';
-import Markdown from 'react-markdown';
 import {postComment} from '../../api/index';
 import {fetchQuestion} from '../../redux/question/questionAction.js';
 
@@ -24,6 +22,7 @@ function QuestionDetailComponent({question,addAList, user, fetchQuestion, proble
         const res = favList?.list?.find(el => el.link === question.link);
         res ? setisfav(true) : setisfav(false);
         console.log(res);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [problemset]);
 
     const handleClick = async (question,addAList) => {
@@ -50,9 +49,8 @@ function QuestionDetailComponent({question,addAList, user, fetchQuestion, proble
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const res = await postComment(question.id, {...form});
+            await postComment(question.id, {...form});
             setform({text:''});
-            console.log(res);
             fetchQuestion(question.index);
         } catch (err) {
             alert(err.response?.data?.message);

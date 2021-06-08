@@ -4,14 +4,14 @@ const INITIAL_STATE = {
     question:null,
     isLoading:false,
     error:undefined
-}
+};
 
 const questionReducer = (state = INITIAL_STATE,action)=>{
     switch(action.type){
         case types.FETCHING_START: return({
             ...state,
             isLoading:true,
-        })
+        });
         case types.FETCH_SUCCESS: return({
             error: undefined,
             question: action.payload,
