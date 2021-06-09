@@ -58,6 +58,10 @@ userSchema.pre(/^find/,function(next) {
         path:'friends',
         select: '-password -email -passwordChangeToken -solved -friendRequests -friends -problemsets',
     });
+    this.populate({
+        path:'friendRequests',
+        select: '-password -email -passwordChangeToken -solved  -friends -problemsets',
+    });
     next();
 });
 

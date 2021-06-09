@@ -1,25 +1,15 @@
 import React from 'react';
-import {getUserSelector} from '../../redux/user/userSelector';
-import {connect} from 'react-redux';
-import FriendComponent from '../../components/friend/friendComponent';
+import FriendListComponent from '../../components/friend/friendListComponent';
+import {Switch,Route,useRouteMatch} from 'react-router-dom';
+import Errorpage from '../errorpage';
 
-function FriendsPage ({user}) {
-
-    return (
-        <div className="mr-auto ml-auto">
-            <ol className="list-group">
-                {
-                    user?.friends.map(e => 
-                        <FriendComponent user = {e} />
-                    )
-                }
-            </ol>
-        </div>
+function FriendsPage () {
+    const match = useRouteMatch();
+    return(
+        <Switch>
+            <Route exact path = {`${match.path}`}><FriendListComponent/></Route>
+            <Route path = "*" component = {Errorpage} />
+        </Switch>
     )
-}
-
-const mapStateToProps = (state) =>({
-    user : getUserSelector(state),
-});
-
-export default connect(mapStateToProps)(FriendsPage);
+};
+export default FriendsPage;

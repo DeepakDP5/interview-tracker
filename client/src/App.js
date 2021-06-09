@@ -13,6 +13,7 @@ import {getUserSelector} from './redux/user/userSelector';
 import PersonalProblemset from './pages/personalProblemSet/personalProblemset';
 import Test from './components/modal/test';
 import FriendsPage from './pages/user/friendsPage';
+import UserSearch from './components/friend/userSearch';
 
 import './App.scss';
 
@@ -44,6 +45,7 @@ const App = ({fetchUser,logoutUser, user}) => {
                 <Route path='/list' component = {PersonalProblemset}/>
                 <Route path = '/test' component = {Test}/>
                 <Route path = '/friends' component = {FriendsPage}/>
+                <Route path = '/user/:username' component = {UserSearch} />
                 <Route path = '*' component = {Errorpage}/>
             </Switch>
         </div>
