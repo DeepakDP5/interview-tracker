@@ -80,7 +80,7 @@ exports.friendRequests = aEH(async (req, res, next) => {
         if(!user2) next(new Err('User does not exist', 400));
         await User.findByIdAndUpdate(req.params.id, { friends: [...user2.friends, req.user.id] });
     }
-    friendReq = friendReq.filter(e => e!=req.params.id);
+    friendReq = friendReq.filter(e => e._id !=req.params.id);
     await User.findByIdAndUpdate(req.user.id, { friends, friendRequests: friendReq });
     res.status(200).json({
         status: 'success',

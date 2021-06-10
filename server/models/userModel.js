@@ -54,14 +54,17 @@ userSchema.pre(/^find/,function(next) {
     this.populate({
         path:'problemsets',
     });
+
     this.populate({
         path:'friends',
-        select: '-password -email -passwordChangeToken -solved -friendRequests -friends -problemsets',
+        select: '-friends'
     });
+
     this.populate({
         path:'friendRequests',
-        select: '-password -email -passwordChangeToken -solved  -friends -problemsets',
-    });
+        select: '-friendRequests'
+    })
+    
     next();
 });
 
