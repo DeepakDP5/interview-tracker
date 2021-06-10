@@ -10,9 +10,9 @@ export default function ObjectProblemsetList({list}) {
             <li className="list-group-item d-flex justify-content-between align-items-center" style = {{cursor: 'pointer'}} onClick={(e) => setShow(state => !state)}>
                 {list.name}
             </li>
-            {
-                show ? <ObjectProblemsetListItem list = {list.list} setShow = {setShow} /> : null
-            }
+        {
+            show ? <ObjectProblemsetListItem key = {list._id} list = {list.list} /> : null
+        }
         </div>
     )
 }

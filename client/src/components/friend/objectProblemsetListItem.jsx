@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export default function ObjectProblemsetListItem({list}) {
-    return (    
+    
+    return (  
         <div>
             {
                 list.map(item => 
@@ -11,6 +12,6 @@ export default function ObjectProblemsetListItem({list}) {
                     </a>
                 )  
             } 
-        </div>
+        </div> 
     )
 }

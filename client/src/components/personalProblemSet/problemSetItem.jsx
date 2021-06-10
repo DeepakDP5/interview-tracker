@@ -21,7 +21,6 @@ function ProblemSetItem({el, func, addAList}) {
             alert(err.response.data.message);
         }
     }
-
     return (
         <div>
             <li className="list-group-item d-flex justify-content-between align-items-center" style = {{cursor: 'pointer'}} onClick={(f) => func(el.name)}>
