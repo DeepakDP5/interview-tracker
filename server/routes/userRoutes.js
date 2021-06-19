@@ -16,6 +16,7 @@ router.post('/addtofavorite',userController.addToFavorite);
 router.delete('/list/:id', userController.deleteList);
 router.delete('/listitem/:id', userController.deleteListItem);
 router.post('/cancelrequest/:id',userController.cancelFriendRequest);
+router.post('/togglepp/:id',userController.togglepp);
 // router.post('/like/:id', userController.likeProblemSet);
 
 module.exports = router;

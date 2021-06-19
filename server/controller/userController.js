@@ -157,6 +157,8 @@ exports.deleteListItem = aEH(async (req, res, next) => {
     const pid = req.params.id;
     const {sid} = req.body;
 
+    console.log(sid,pid);
+
     let problemset = await ProblemSet.findById(sid);
     problemsetList = problemset.list.filter(e => e._id != pid);
     const temp = await ProblemSet.findByIdAndUpdate(sid, {list: problemsetList}, {new: true});
@@ -178,6 +180,15 @@ exports.cancelFriendRequest = aEH(async (req, res, next) => {
         status: 'success'
     })
 }); 
+
+exports.togglepp = aEH(async (req, res, next) => {
+    let problemset = await ProblemSet.findById(req.params.id);
+    problemset.public = !problemset.public;
+    await ProblemSet.findByIdAndUpdate(req.params.id,{public:problemset.public});
+    res.status(200).json({
+        status: 'success'
+    })
+})
 
 // exports.likeProblemSet = aEH(async (req, res, next) => {
 //     const id = req.params.id;

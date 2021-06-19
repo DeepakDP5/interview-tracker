@@ -49,6 +49,7 @@ function PersonalProblemSetComponent({user,addAList, problemset}) {
         history.push(`${loc.pathname}?name=${name}`)
     };
     let playlist = {};
+    
     if(user){
         playlist = user.problemsets.find(el => el.name === val.name) || [];
     }
