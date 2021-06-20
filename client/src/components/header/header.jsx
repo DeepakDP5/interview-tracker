@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import {getUserSelector} from '../../redux/user/userSelector';
 import {connect} from 'react-redux';
 
+import './header.scss';
+
 const Header = ({user}) =>{
     const [showCollapsedMenu, setState] = useState(false);
     const toggleMenu = ()=>{

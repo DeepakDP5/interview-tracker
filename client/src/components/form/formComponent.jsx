@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+
+import './form.scss';
 
 function Form({type,id,placeholder,handleChange,label,value,required,name}) {
     return (
-        <div className = "form-group">
+        <div className = "form-group custom1">
 
             {
                 label ?  <label id = {id}>{label}</label> : null

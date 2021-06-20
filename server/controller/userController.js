@@ -157,8 +157,6 @@ exports.deleteListItem = aEH(async (req, res, next) => {
     const pid = req.params.id;
     const {sid} = req.body;
 
-    console.log(sid,pid);
-
     let problemset = await ProblemSet.findById(sid);
     problemsetList = problemset.list.filter(e => e._id != pid);
     const temp = await ProblemSet.findByIdAndUpdate(sid, {list: problemsetList}, {new: true});
