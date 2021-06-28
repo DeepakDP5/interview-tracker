@@ -6,8 +6,7 @@ import {toggleSolved} from '../../api/index';
 import {toggleSolvedAction} from '../../redux/user/userActions';
 
 function Question({ question, user, checked, toggleSolvedAction }) {
-    const color = '#f8f9fa';
-
+    
     let ch = checked===undefined ? false : true;
 
     const toggleState = async(id) =>{
@@ -21,36 +20,35 @@ function Question({ question, user, checked, toggleSolvedAction }) {
     };
 
     const [state, setState] = useState(ch);
-
     useEffect(() => {
         setState(ch);
     }, [ch]);
 
-    const colorChange = (e)=>{
-        e.target.closest('li').style.background = color;
-    }
-
-    const colorChange2 = (e)=>{
-        e.target.closest('li').style.background = '';
-    }
+    
  
     return (
-        <li className= "list-group-item d-flex pt-1 pb-1" onMouseOver = {(e) => colorChange(e)} onMouseOut = {(e)=> colorChange2(e)}>
-            <div className = "pr-3" onMouseOver = {(e) => colorChange(e)} onMouseOut = {(e)=> colorChange2(e)} >{question.index}.</div>
-            <Link to ={`/problemset/problem/${question.index}`} style={{textDecoration: 'none'} }><div onMouseOver = {(e) => colorChange(e)} onMouseOut = {(e)=> colorChange2(e)}>
-                <div className="">{ question.title }</div>
-            </div>
-            </Link>
+        <tr>
+            <td className="col1">{question.index}</td>
+            <td className="col2">
+                <Link to ={`/problemset/problem/${question.index}`} style={{textDecoration: 'none',color:'#d6d6d6'} }>
+                    {question.title}
+                </Link>
+            </td>
             {
-                user ?
-                 <div className="form-check ml-auto">
-                     <input className="form-check-input" type="checkbox" value="" id= {`${question.id}`} onChange={(e) => toggleState(question.id)} checked = {state} />
-                 </div> 
-                :  
-                null
-            }
-               
-        </li>
+                 user ?
+                    <td 
+                    className="col3" 
+                    onClick={(e) => toggleState(question.id)} 
+                    style={ state ? {background: 'rgba(14,173,105,0.39)'}: {}}>
+                        {
+                            state ? 'Yes' : 'No'
+                        }
+                      {/* <input className="form-check-input" type="checkbox" value="" id= {`${question.id}`} onChange={(e) => toggleState(question.id)} checked = {state} /> */}
+                    </td>
+                 :  
+                 null
+            } 
+        </tr>
     )
 }
 

@@ -7,7 +7,7 @@ exports.getAllQuestions = aEH(async (req, res, next) => {
     page = req.query.page*1 || 1;
     limit = req.query.num*1 || 50;
     skip = (page-1) * limit;
-    let query = Question.find().skip(skip).limit(limit).populate({ path: 'comments' });
+    const query = Question.find().skip(skip).limit(limit).populate({ path: 'comments' }).sort('index');;
     const question = await query;
     res.status(200).json({
         status: 'success',
@@ -18,7 +18,8 @@ exports.getAllQuestions = aEH(async (req, res, next) => {
 
 exports.topicWiseQuestions = aEH(async (req, res, next) => {
     const { topic } = req.params;
-    const questions = await Question.find({ topic }).populate({ path: 'comments'});
+    const questions = await Question.find({ topic }).populate({ path: 'comments'}).sort('index');
+    
     if (!questions.length) return next(new Err('No results', 404));
     res.status(200).json({
         status: 'success',

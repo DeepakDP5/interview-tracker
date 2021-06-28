@@ -1,11 +1,40 @@
 .problemset{
     display: flex;
+    font-size: medium;
     flex-direction: column;
-    width: 55%;
-    margin: 5% 0% 0% 17.5%;
+    width: 63%;
+    margin: 7% 0% 0% 12.5%;
 
     .pagination{
         margin: auto;
         padding-top: 0.5em;
     }
+
+    table, th, td{
+        color :#d6d6d6;
+        border : 3px solid #d6d6d6;
+        text-align: center;
+    }
+    .col31{
+        width:12%;
+    }
+
+    tr{
+        height:38px;
+    }
+    .col1{
+        width: 5%;
+    }
+    .col2{
+        padding-left: 10px;
+        text-align:left;
+    }
+    .col3{
+        width: 12%;
+        cursor: pointer;
+    }
+}
+
+h6{
+    color:#d6d6d6;
 }

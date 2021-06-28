@@ -13,9 +13,14 @@ const commentRoutes = require('./routes/commentRoutes');
 //Middlewares
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000','https://cfa67b10d907.ngrok.io'],
     credentials: true, 
 })); 
+
+// app.use(cors({
+//     origin: 'https://cfa67b10d907.ngrok.io',
+//     credentials: true, 
+// })); 
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
