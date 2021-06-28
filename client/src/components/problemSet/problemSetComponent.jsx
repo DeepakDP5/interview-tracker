@@ -10,23 +10,26 @@ import TagsComponent from '../tagsComponent/tagsComponent';
 import './problemSetComponent.scss'
 
 const ProblemSetComponent = ({ questionPerPage, paginate, page, problemset,user,topic}) => {
+    // d-flex justify-content-around flex-wrap
     return (
-        <div className="d-flex justify-content-around flex-wrap">
+        <div className="contain">
             <div className = "problemset">
                 <table>
-                    <tr>
-                        <th className="col1">#</th>
-                        <th className="col2">Title</th>
-                        { user ? <td className="col31">Solved?</td> : null } 
-                    </tr>
-
+                    <thead>
+                        <tr>
+                            <th className="col1">#</th>
+                            <th className="col2">Title</th>
+                            { user ? <td className="col31">Solved?</td> : null } 
+                        </tr>
+                    </thead>
+                    <tbody>
                     {   
                         problemset?.map(e => {
                             let checked = user?.solved.find(el => el == e.id);
                             return <Question key={ e.id } question={ e } checked = {checked}/>
                         })
                     }
-
+                    </tbody>
                 </table>
                 <div className="pagination">
                 {

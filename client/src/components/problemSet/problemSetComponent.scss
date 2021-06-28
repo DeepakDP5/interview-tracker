@@ -1,37 +1,39 @@
-.problemset{
+.contain{
+    
     display: flex;
-    font-size: medium;
-    flex-direction: column;
-    width: 63%;
-    margin: 7% 0% 0% 12.5%;
+    flex-direction: row;
+    margin-bottom: 8%;
 
-    .pagination{
-        margin: auto;
-        padding-top: 0.5em;
-    }
+    .problemset{
+        display: flex;
+        font-size: medium;
+        flex-direction: column;
+        width: 65%;
+        margin: 7% 0% 0% 12.5%;
 
-    table, th, td{
-        color :#d6d6d6;
-        border : 3px solid #d6d6d6;
-        text-align: center;
-    }
-    .col31{
-        width:12%;
-    }
+        table, th, td{
+            color :#d6d6d6;
+            border : 2.5px solid #d6d6d6;
+            text-align: center;
+        }
+        .col31{
+            width:12%;
+        }
 
-    tr{
-        height:38px;
-    }
-    .col1{
-        width: 5%;
-    }
-    .col2{
-        padding-left: 10px;
-        text-align:left;
-    }
-    .col3{
-        width: 12%;
-        cursor: pointer;
+        tr{
+            height:38px;
+        }
+        .col1{
+            width: 5%;
+        }
+        .col2{
+            padding-left: 10px;
+            text-align:left;
+        }
+        .col3{
+            width: 12%;
+            cursor: pointer;
+        }
     }
 }
 
