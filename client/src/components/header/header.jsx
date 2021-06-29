@@ -12,40 +12,74 @@ const Header = ({user}) =>{
     }
 
     return(
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <Link to = '/' className = 'navbar-brand'>Interview Tracker</Link>
-        <button className="navbar-toggler" type="button" onClick = {toggleMenu} data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className = {`collapse navbar-collapse ${showCollapsedMenu ? 'show' : ''}`} id="navbarText">
-            
-            {
-                user ? 
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link" to = {`/${user.username}/profile`}>{user.username}<span className="sr-only">(current)</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to = "/list?name=Favorite">My List<span className="sr-only">(current)</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/friends">Friends<span className="sr-only">(current)</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/logout">Logout</Link>
-                        </li>
-                    </ul>
-                        
-                : 
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link" to = '/login'>Login<span className="sr-only">(current)</span></Link>
-                        </li>
-                    </ul>
-            }
-            
-        </div>
+        <nav className={`navbar navbar-expand-lg sticky-top p-0 ${showCollapsedMenu ? "nav-collapsed" : "" }`}>
+            <Link to = '/' className = "navbar-brand link">{'<Interview Tracker>;'}</Link>
+            <div className="navbar-toggler" type="button" onClick = {toggleMenu} data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                {'|<'}
+            </div>
+            <div className = {`collapse navbar-collapse ${showCollapsedMenu ? 'show' : ''}`} id="navbarText">
+                
+                {
+                    user ? 
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <Link className="nav-link" to = {`/${user.username}/profile`}>{user.username}<span className="sr-only">(current)</span></Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to = "/list?name=Favorite">My List<span className="sr-only">(current)</span></Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/friends">Friends<span className="sr-only">(current)</span></Link>
+                            </li>
+                            <li className="nav-item logout">
+                                <Link className="nav-link" to="/logout">Logout</Link>
+                            </li>
+                        </ul>
+                            
+                    : 
+                        <ul className="navbar-nav">
+                            <li className="nav-item login">
+                                <Link className="nav-link" to = '/login'>Login<span className="sr-only">(current)</span></Link>
+                            </li>
+                        </ul>
+                }
+                
+            </div>
         </nav>
+        // <nav className="nav-bar">
+        //     <Link to = '/' className = 'nav-bar'>Interview Tracker</Link>
+        //     {/* <button className="navbar-toggler" type="button" onClick = {toggleMenu} data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        //         <span className="navbar-toggler-icon"></span>
+        //     </button> */}
+        //     {/* <div className = "nav-bar-btns" id="navbarText"> */}
+                
+        //         {
+        //             user ? 
+        //                 <ul className="nav-bar-list">
+        //                     <li className="nav-item">
+        //                         <Link className="nav-link" to = {`/${user.username}/profile`}>{user.username}<span className="sr-only">(current)</span></Link>
+        //                     </li>
+        //                     <li className="nav-item">
+        //                         <Link className="nav-link" to = "/list?name=Favorite">My List<span className="sr-only">(current)</span></Link>
+        //                     </li>
+        //                     <li className="nav-item">
+        //                         <Link className="nav-link" to="/friends">Friends<span className="sr-only">(current)</span></Link>
+        //                     </li>
+        //                     <li className="nav-item">
+        //                         <Link className="nav-link" to="/logout">Logout</Link>
+        //                     </li>
+        //                 </ul>
+                            
+        //             : 
+        //                 <ul className="nav-bar-list">
+        //                     <li className="nav-item">
+        //                         <Link className="nav-link" to = '/login'>Login<span className="sr-only">(current)</span></Link>
+        //                     </li>
+        //                 </ul>
+        //         }
+                
+        //     {/* </div> */}
+        // </nav>
     );
 };
 

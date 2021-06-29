@@ -19,7 +19,7 @@ const ProblemSetComponent = ({ questionPerPage, paginate, page, problemset,user,
                         <tr>
                             <th className="col1">#</th>
                             <th className="col2">Title</th>
-                            { user ? <td className="col31">Solved?</td> : null } 
+                            { user ? <th className="col31">Solved?</th> : null } 
                         </tr>
                     </thead>
                     <tbody>
