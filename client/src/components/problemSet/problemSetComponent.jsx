@@ -14,7 +14,7 @@ const ProblemSetComponent = ({ questionPerPage, paginate, page, problemset,user,
     return (
         <div className="contain">
             <div className = "problemset">
-                <table>
+                <table className="table1">
                     <thead>
                         <tr>
                             <th className="col1">#</th>

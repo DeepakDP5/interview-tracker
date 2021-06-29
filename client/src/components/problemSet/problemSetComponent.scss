@@ -1,7 +1,6 @@
 .contain{
     
     display: flex;
-    flex-direction: row;
     margin-bottom: 8%;
 
     .problemset{
@@ -11,9 +10,15 @@
         width: 65%;
         margin: 7% 0% 0% 12.5%;
 
-        table, th, td{
+        table {
+            border-spacing: 0px;
+            border : 1.25px solid #d6d6d6;
+        }
+
+        th, td{
             color :#d6d6d6;
-            border : 2.5px solid #d6d6d6;
+            border : 1.25px solid #d6d6d6;
+            border-spacing: 0px;
             text-align: center;
         }
         .col31{

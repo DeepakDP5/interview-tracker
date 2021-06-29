@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import Header from './components/header/header';
 import {Route, Switch, withRouter, Redirect} from "react-router-dom";
 import ProblemPage from './pages/problemset/problemPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/login/login';
 import {fetchUser, logoutUser} from './redux/user/userActions';
 import {connect} from 'react-redux';
