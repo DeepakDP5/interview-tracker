@@ -9,13 +9,12 @@ import CreateProblemset from './createProblemset';
 import {addAList} from '../../redux/user/userActions';
 import ModalWrapper from './../modal/modal';
 import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector';
-import './list.scss';
 
+import './list.scss';
 
 const Modal = ModalWrapper(CreateProblemset);
 
-
-function PersonalProblemSetComponent({user,addAList, problemset}) {
+const PersonalProblemSetComponent = ({user,addAList, problemset}) => {
 
     const loc  = useLocation();
     const history = useHistory();
@@ -45,7 +44,7 @@ function PersonalProblemSetComponent({user,addAList, problemset}) {
         }
     }
 
-    const func = (name)=>{
+    const func = (name) =>{
         history.push(`${loc.pathname}?name=${name}`)
     };
     let playlist = {};
@@ -54,28 +53,23 @@ function PersonalProblemSetComponent({user,addAList, problemset}) {
         playlist = user.problemsets.find(el => el.name === val.name) || [];
     }
     return (
-        <div>
-            <h2 className="ml-3">My list</h2>
-            <div  className = "d-flex justify-content-start flex-wrap">
-                <ol className="playlists">
-                {
-                    user ? 
-                    problemset.map(e => (
-                        <ProblemSetItem key = {e._id} func = {func} el = {e}/>
-                    ))
-                    :
-                    null
-                }
-                {
-                    modalShow1 ? null : <button onClick={() => setShowModal1(true)}  className="btn btn-primary mt-3">Add List</button>
-                }
-                <Modal onHide={() => setShowModal1(false)} show = {modalShow1} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formData}/>
-                </ol>
+        <div className="personal-problemset">
+            <h4 className="ml-3">My list</h4>
+            <div  className = "problemset-container">
+                <div className="playlists">
+                    {
+                        user ? 
+                            problemset.map(e => (
+                                <ProblemSetItem key = {e._id} func = {func} el = {e}/>
+                            ))
+                        :
+                            null
+                    }
+                    { modalShow1 ? null : <button onClick={() => setShowModal1(true)}  className="btn btn-primary mt-3">Add List</button> }
+                    <Modal onHide={() => setShowModal1(false)} show = {modalShow1} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formData}/>
+                </div>
                 <div className = "list">
-                {
-                    (user && val.name) ?
-                    <ProblemSetListComponent playlist={playlist} /> : null
-                }
+                    { (user && val.name) ? <ProblemSetListComponent playlist={playlist} /> : null }
                 </div>
             </div>
         </div>

@@ -62,13 +62,13 @@ function ProblemSetListComponent({playlist, addProblem,fetchUser}) {
                 <input className="form-check-input" type="checkbox" value="" id= {`${playlist._id}`} checked = {playlist.public} onChange = {() => handleToggle(playlist._id)}/>
             </div> 
             <br/>
-            <ol className="list-group">
+            <div className="list-group">
             {
                 playlist?.list?.map((el, i) =>(
                     <ListItem key = {i} el = {el} sid = {playlist._id} />
                 ))
             }
-            </ol>
+            </div>
 
             <div>
                 {

@@ -12,6 +12,7 @@ import Errorpage from './pages/errorpage';
 import {getUserSelector} from './redux/user/userSelector';
 import PersonalProblemset from './pages/personalProblemSet/personalProblemset';
 import Test from './components/modal/test';
+import Footer from './components/footer/footer';
 import FriendsPage from './pages/user/friendsPage';
 import UserSearch from './components/friend/userSearch';
 
@@ -34,7 +35,7 @@ const App = ({fetchUser,logoutUser, user}) => {
 
     return (
         <div>
-        <Header/>
+        <Header />
             <Switch>
                 <Route exact path='/'><Home/></Route>
                 <Route path='/problemset' component={ ProblemPage }/>
@@ -48,6 +49,7 @@ const App = ({fetchUser,logoutUser, user}) => {
                 <Route path = '/user/:username' component = {UserSearch} />
                 <Route path = '*' component = {Errorpage}/>
             </Switch>
+        <Footer />
         </div>
     );
 };

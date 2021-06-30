@@ -1,64 +1,84 @@
-
 .navbar {
     background-color: #121212;
     color: #d4d4d4;
-    border: 4px solid #d4d4d4;
+    border-top: 4px solid #d4d4d4;
+    border-bottom: 4px solid #d4d4d4;
     font-family: VT323;
     font-size: 28px;
-    width: 100%;
     // height: 68px;
 
     .navbar-brand {
         font-size: 35px;
         padding-left: 1rem;
     }
-
     .navbar-toggler {
         font-family: 'Space Mono';
         font-size: 35px;
         // background-color: #d4d4d4;
         // color: #121212;
     }
-
     .navbar-nav {
         margin-left: auto;
         margin-right: 0px;
         padding-right: 0px;
-        // height: 60px;
+        
+
+        .nav-item {
+            border-left: 4px solid #d4d4d4;
+            padding-left: 10px;
+            padding-right: 10px;    
+        }
+        .nav-item:hover {
+            background-color: rgba(25,130,196,0.65);
+        }
+        .login {
+            width: auto;
+            margin-left: 0px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        .login:hover {
+            background-color: rgba(14,173,105,0.65);
+        }
+        .logout:hover {
+            background-color: rgba(255, 89, 94, 0.65);
+        }
     }
-
-    .nav-item {
-        border-left: 4px solid #d4d4d4;
-        padding-left: 10px;
-        padding-right: 10px;
-
-    }
-
-    .nav-item:hover {
-        background-color: rgba(25,130,196,0.65);
-    }
-
     .nav-link, .link, .nav-link:hover, .link:hover {
         text-decoration: none;
         color: #d4d4d4;
     }
-    .login {
-        width: auto;
-        margin-left: 0px;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .login:hover {
-        background-color: rgba(14,173,105,0.65);
-    }
-
-    .logout:hover {
-        background-color: rgba(255, 89, 94, 0.65);
-    }
-
 }
 
 // .nav-collapsed {
 //     height: 100%;
+// }
+
+// .nav-bar {
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     height: 60px;
+//     border: 4px solid #d4d4d4;
+//     font-family: VT323;
+//     font-size: 28px;
+//     border-collapse: collapse;
+
+//     .nav-item-c {
+//         flex-grow: 1;
+//         border: 2px solid #d4d4d4;
+//         border-collapse: collapse;
+//         height: 60px;
+//         text-align: center;
+//         align-items: center;
+//     }
+//     .brand {
+//         flex-grow: 10;
+//         text-align: start;
+//     }
+//     .nav-link-c {
+//         padding-top: 100px;
+//         text-decoration: none;
+//         color: #d4d4d4;
+//     }
 // }

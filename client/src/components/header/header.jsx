@@ -46,39 +46,38 @@ const Header = ({user}) =>{
                 
             </div>
         </nav>
-        // <nav className="nav-bar">
-        //     <Link to = '/' className = 'nav-bar'>Interview Tracker</Link>
-        //     {/* <button className="navbar-toggler" type="button" onClick = {toggleMenu} data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        //         <span className="navbar-toggler-icon"></span>
-        //     </button> */}
-        //     {/* <div className = "nav-bar-btns" id="navbarText"> */}
-                
-        //         {
-        //             user ? 
-        //                 <ul className="nav-bar-list">
-        //                     <li className="nav-item">
-        //                         <Link className="nav-link" to = {`/${user.username}/profile`}>{user.username}<span className="sr-only">(current)</span></Link>
-        //                     </li>
-        //                     <li className="nav-item">
-        //                         <Link className="nav-link" to = "/list?name=Favorite">My List<span className="sr-only">(current)</span></Link>
-        //                     </li>
-        //                     <li className="nav-item">
-        //                         <Link className="nav-link" to="/friends">Friends<span className="sr-only">(current)</span></Link>
-        //                     </li>
-        //                     <li className="nav-item">
-        //                         <Link className="nav-link" to="/logout">Logout</Link>
-        //                     </li>
-        //                 </ul>
-                            
-        //             : 
-        //                 <ul className="nav-bar-list">
-        //                     <li className="nav-item">
-        //                         <Link className="nav-link" to = '/login'>Login<span className="sr-only">(current)</span></Link>
-        //                     </li>
-        //                 </ul>
-        //         }
-                
-        //     {/* </div> */}
+
+
+        // <nav>
+        //     {
+        //         user ?
+        //             <div className="nav-bar">
+        //                 <div className="nav-item-c brand">
+        //                     <Link to = '/' className = "nav-link-c">{'<Interview Tracker>;'}</Link>
+        //                 </div>
+        //                 <div className="nav-item-c">
+        //                     <Link className="nav-link-c" to = {`/${user.username}/profile`}>{user.username}</Link>
+        //                 </div>
+        //                 <div className="nav-item-c">
+        //                     <Link className="nav-link-c" to = "/list?name=Favorite">My List</Link>
+        //                 </div>
+        //                 <div className="nav-item-c">
+        //                     <Link className="nav-link-c" to="/friends">Friends</Link>
+        //                 </div>
+        //                 <div className="nav-item-c">
+        //                     <Link className="nav-link-c" to="/logout">Logout</Link>
+        //                 </div>
+        //             </div>
+        //         :
+        //             <div className="nav-bar">
+        //                 <div className="nav-item-c brand">
+        //                     <Link to = '/' className = "nav-link-c">{'<Interview Tracker>;'}</Link>
+        //                 </div>
+        //                 <div className="nav-item-c">
+        //                     <Link className="nav-link-c" to = '/login'>Login</Link>
+        //                 </div>
+        //             </div>
+        //     }
         // </nav>
     );
 };

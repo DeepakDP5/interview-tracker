@@ -3,13 +3,19 @@ import React, {useState} from 'react';
 import {deleteList} from '../../api/index';
 import {addAList} from '../../redux/user/userActions';
 import {connect} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
+import queryString from 'query-string';
 import ModalWrapper from '../../components/modal/modal';
 import ConfirmRemoveCompoment from './../confirmRemoveForm/confirmRemoveCompoment';
+
+import './list.scss';
 
 const Modal = ModalWrapper(ConfirmRemoveCompoment);
 
 function ProblemSetItem({el, func, addAList}) {
+
+    const loc  = useLocation();
+    let val = queryString.parse(loc.search);
 
     const [deletelist, setdeletelist] = useState(false);
     const history = useHistory();
@@ -30,14 +36,17 @@ function ProblemSetItem({el, func, addAList}) {
         }
     }
     return (
-        <div>
-            <li className="list-group-item d-flex justify-content-between align-items-center" style = {{cursor: 'pointer'}} onClick={(f) => func(el.name)}>
-                {el.name} 
-                {
-                    el.name === 'Favorite' ? null : <button type="button" className="close" aria-label="Close"><span aria-hidden="true" onClick={e => setModalShow(true)}>x</span></button>
-                }   
-                <Modal onHide={() => setModalShow(false)} show = {modalShow} handleDeleteEle = {handleDeleteEle} hideModal = {hideModal} />
-            </li>
+        <div className="problemset-item" style = {{cursor: 'pointer'}} onClick={(f) => func(el.name)}>
+            <div className={`problemset-name ${el.name === val.name ? 'active' : ''}`}><span className={`arrow ${el.name === val.name ? 'active' : ''}`}>{'->'}</span>{el.name}</div>
+            {
+                el.name === 'Favorite' ? 
+                    null
+                :
+                    <button type="button" className="close" aria-label="Close">
+                        <span aria-hidden="true" onClick={e => setModalShow(true)}>x</span>
+                    </button>
+            }
+            <Modal onHide={() => setModalShow(false)} show = {modalShow} handleDeleteEle = {handleDeleteEle} hideModal = {hideModal} />
         </div>
     )
 };
