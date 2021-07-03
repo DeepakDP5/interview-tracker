@@ -1,13 +1,13 @@
 import React,{useState} from 'react';
 import {deleteListItem} from '../../api/index';
-import {addAList} from '../../redux/user/userActions';
+import {fetchUser} from '../../redux/user/userActions';
 import {connect} from 'react-redux';
 import ModalWrapper from '../../components/modal/modal';
 import ConfirmRemoveCompoment from './../confirmRemoveForm/confirmRemoveCompoment';
 
 const Modal = ModalWrapper(ConfirmRemoveCompoment);
 
-function ListItem({el, sid, addAList}) {
+function ListItem({el, sid, fetchUser}) {
 
     const [modalShow,setModalShow] = useState(false);
 
@@ -16,10 +16,12 @@ function ListItem({el, sid, addAList}) {
     }
 
     const handleDeleteEle = async() => {
+        console.log(sid, el._id);
         try {
             const data = {sid: sid};
-            const res = await deleteListItem(el._id, data);
-            addAList(res.data.problemsets);
+            await deleteListItem(el._id, data);
+            fetchUser();
+            hideModal();
         } catch (err) {
             alert(err.response.data.message);
         }
@@ -37,7 +39,7 @@ function ListItem({el, sid, addAList}) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addAList: (data) => dispatch(addAList(data)),
+    fetchUser: ()=> dispatch(fetchUser())
 });
 
 export default connect(null, mapDispatchToProps)(ListItem);

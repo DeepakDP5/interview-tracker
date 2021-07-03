@@ -10,7 +10,7 @@ const { ProblemSet } = require("../models/personalProblemSetModel");
 const jwtToCookie = (user, status, res) => {
     const token = jwt.sign({ id: user.id }, process.env.SECRETKEY);
     const cookieOptions = {
-        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
         httpOnly: true,
         secure: process.env.NODE_ENV === "production" ? true : false,
     };

@@ -22,6 +22,15 @@ const validationErr = (err) => {
     return error;
 }
 
+const castErr = (err) => {
+    let castErr = err.message;
+    let model = castErr.split(' ');
+    model = model[model.length - 1];
+    let message = `Invalid ID for model ${model}`;
+    const error = new Err(message, 400);
+    return error;
+}
+
 const sendErrRes = (res, err) => {
     res.status(err.statusCode).json({
         statusCode: err.statusCode,
@@ -39,6 +48,9 @@ const globalErrorHandler = (err, req, res, next) => {
     }
     if (err.name == 'ValidationError') {
         err = validationErr(err);
+    }
+    if (err.name === 'CastError') {
+        err = castErr(err);
     }
     sendErrRes(res, err);
 }

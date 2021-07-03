@@ -3,9 +3,9 @@ import {Link,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUserSelector} from '../../redux/user/userSelector';
 import {toggleSolved} from '../../api/index';
-import {toggleSolvedAction} from '../../redux/user/userActions';
+import {fetchUser} from '../../redux/user/userActions';
 
-function Question({ question, user, checked, toggleSolvedAction }) {
+function Question({ question, user, checked, fetchUser }) {
     
     let ch = checked===undefined ? false : true;
 
@@ -13,7 +13,7 @@ function Question({ question, user, checked, toggleSolvedAction }) {
         setState(e => !e);
         try{
             await toggleSolved(id);
-            toggleSolvedAction(id);
+            fetchUser();
         } catch(err){
             alert(err.message);
         }
@@ -57,7 +57,7 @@ const mapStateToProps = (state) =>({
 });
 
 const mapDispatchToProps = (dispatch) =>({
-    toggleSolvedAction: (id) => dispatch(toggleSolvedAction(id)),
+    fetchUser: () => dispatch(fetchUser()),
 });
 
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Question));

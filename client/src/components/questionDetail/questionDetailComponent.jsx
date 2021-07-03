@@ -3,12 +3,12 @@ import {question} from '../../redux/question/questionSelector';
 import {connect} from 'react-redux';
 import CommentComponent from '../comment/commentComponent';
 import {addToFavorite} from '../../api/index';
-import { addAList } from '../../redux/user/userActions';
+import {fetchUser} from '../../redux/user/userActions';
 import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector';
 import {postComment} from '../../api/index';
 import {fetchQuestion} from '../../redux/question/questionAction.js';
 
-function QuestionDetailComponent({question,addAList, user, fetchQuestion, problemset}) {
+function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, problemset}) {
 
     const [form, setform] = useState({
         text: '',
@@ -17,15 +17,14 @@ function QuestionDetailComponent({question,addAList, user, fetchQuestion, proble
     const [isfav, setisfav] = useState(false);
 
     useEffect(() => {
-        console.log('change');
         let favList = problemset?.find(el => el.name === 'Favorite');
         const res = favList?.list?.find(el => el.link === question.link);
         res ? setisfav(true) : setisfav(false);
         console.log(res);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [problemset]);
+    }, [problemset,question]);
 
-    const handleClick = async (question,addAList) => {
+    const handleClick = async (question) => {
         const data = {
             link: question.link,
             topic: question.topic,
@@ -33,8 +32,8 @@ function QuestionDetailComponent({question,addAList, user, fetchQuestion, proble
         }
     
         try{
-            const res = await addToFavorite(data);
-            addAList(res.data.problemsets);
+            await addToFavorite(data);
+            fetchUser();
         } catch (err) {
             alert(err.response?.data?.message);
         }
@@ -64,7 +63,7 @@ function QuestionDetailComponent({question,addAList, user, fetchQuestion, proble
             {   
                 user ?
                     isfav ? null :
-                        <button className = 'btn btn-primary btn-sm' onClick = {(e) => { e.preventDefault(); return handleClick(question,addAList)}} >Add to Favorite</button>
+                        <button className = 'btn btn-primary btn-sm' onClick = {(e) => { e.preventDefault(); return handleClick(question)}} >Add to Favorite</button>
                 :
                     null
             }
@@ -85,7 +84,7 @@ const mapStateToProps = (state)=>({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addAList: (data) => dispatch(addAList(data)),
+    fetchUser: () => dispatch(fetchUser()),
     fetchQuestion: (id) => dispatch(fetchQuestion(id)),
 })
 

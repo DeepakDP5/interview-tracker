@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
 import {deleteList} from '../../api/index';
-import {addAList} from '../../redux/user/userActions';
+import {fetchUser} from '../../redux/user/userActions';
 import {connect} from 'react-redux';
 import {useLocation, useHistory} from 'react-router-dom';
 import queryString from 'query-string';
@@ -12,7 +12,7 @@ import './list.scss';
 
 const Modal = ModalWrapper(ConfirmRemoveCompoment);
 
-function ProblemSetItem({el, func, addAList}) {
+function ProblemSetItem({el, func, fetchUser}) {
 
     const loc  = useLocation();
     let val = queryString.parse(loc.search);
@@ -29,7 +29,8 @@ function ProblemSetItem({el, func, addAList}) {
         try {
             const res = await deleteList(el._id);
             setdeletelist(e => !e);
-            addAList(res.data.problemsets);
+            fetchUser();
+            hideModal();
             history.push('/list?name=Favorite');
         } catch (err) {
             alert(err.response.data.message);
@@ -52,7 +53,7 @@ function ProblemSetItem({el, func, addAList}) {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    addAList: (data) => dispatch(addAList(data)),
+    fetchUser : () => dispatch(fetchUser())
 });
 
 export default connect(null, mapDispatchToProps)(ProblemSetItem);

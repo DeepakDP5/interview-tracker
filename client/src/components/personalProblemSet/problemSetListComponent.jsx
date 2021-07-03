@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import ListItem from './listItem';
 import {addProblems,handleTogglePP} from '../../api/index';
-import {addProblem} from '../../redux/user/userActions.js';
 import {connect} from 'react-redux';
 import NewListItemForm from './newListItemForm';
 import ModalWrapper from '../../components/modal/modal';
@@ -10,7 +9,7 @@ import{fetchUser} from '../../redux/user/userActions';
 const Modal = ModalWrapper(NewListItemForm);
 
 
-function ProblemSetListComponent({playlist, addProblem,fetchUser}) {
+function ProblemSetListComponent({playlist, fetchUser}) {
 
     const [modalShow, setModalShow] = useState(false);
     const [formdata, setformdata] = useState({
@@ -35,7 +34,7 @@ function ProblemSetListComponent({playlist, addProblem,fetchUser}) {
         try {
             setModalShow(false);
             await addProblems(playlist._id, formdata);
-            addProblem(formdata, playlist._id);
+            fetchUser();
             setformdata({
                 title: '',
                 topic: '',
@@ -83,7 +82,6 @@ function ProblemSetListComponent({playlist, addProblem,fetchUser}) {
 };
 
 const mapDispatchToProps = (dispatch) =>({
-    addProblem: (data, id) => dispatch(addProblem(data,id)),
     fetchUser : () => dispatch(fetchUser()),
 });
 

@@ -6,7 +6,7 @@ import ProblemSetListComponent from './problemSetListComponent';
 import ProblemSetItem from './problemSetItem';
 import {addList} from '../../api/index';
 import CreateProblemset from './createProblemset';
-import {addAList} from '../../redux/user/userActions';
+import {fetchUser} from '../../redux/user/userActions';
 import ModalWrapper from './../modal/modal';
 import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector';
 
@@ -14,7 +14,7 @@ import './list.scss';
 
 const Modal = ModalWrapper(CreateProblemset);
 
-const PersonalProblemSetComponent = ({user,addAList, problemset}) => {
+const PersonalProblemSetComponent = ({user, fetchUser, problemset}) => {
 
     const loc  = useLocation();
     const history = useHistory();
@@ -33,8 +33,8 @@ const PersonalProblemSetComponent = ({user,addAList, problemset}) => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try{
-           const res = await addList(formData);
-           addAList(res.data.updatedProblemSet.problemsets);
+           await addList(formData);
+           fetchUser();
             setShowModal1((e) => !e);
             setFormData({
                 name: '',
@@ -82,7 +82,7 @@ const mapStateToProps = (state) =>({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addAList: (data) => dispatch(addAList(data)),
+    fetchUser : () => dispatch(fetchUser())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalProblemSetComponent);

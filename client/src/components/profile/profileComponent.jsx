@@ -4,11 +4,11 @@ import {getUserSelector} from '../../redux/user/userSelector';
 import { connect } from 'react-redux';
 import Form from '../form/formComponent';
 import {updateDetails,updateProfilePhoto} from '../../api/index';
-import {updatePhoto} from '../../redux/user/userActions';
+import {fetchUser} from '../../redux/user/userActions';
 
 import './profileComponent.scss';
 
-function ProfileComponent({match, user, updatePhoto}) {
+function ProfileComponent({match, user, fetchUser}) {
 
     const [file, setfile] = useState(null);
     const [email, setemail] = useState('');
@@ -32,8 +32,8 @@ function ProfileComponent({match, user, updatePhoto}) {
         let data = new FormData();
         data.append('photo', file);
         try {
-            const res = await updateProfilePhoto(data);
-            updatePhoto(res.data.photo);
+            await updateProfilePhoto(data);
+            fetchUser();
             setfile(null);
             alert("success");
         } catch(err) {
@@ -94,7 +94,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    updatePhoto: (data) => dispatch(updatePhoto(data))
+    fetchUser: () => dispatch(fetchUser())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);
