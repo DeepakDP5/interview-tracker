@@ -35,21 +35,23 @@ const App = ({fetchUser,logoutUser, user}) => {
 
     return (
         <div>
-        <Header />
-            <Switch>
-                <Route exact path='/'><Home/></Route>
-                <Route path='/problemset' component={ ProblemPage }/>
-                <Route path='/login' component={ Login }/>
-                <Route path='/logout'><Logout fn = {logoutUser}/></Route>
-                <Route path='/forgotpassword' component={ForgotPasswordPage}/>
-                <Route path='/:username/profile' component = {ProfilePage}/>
-                <Route path='/list' component = {PersonalProblemset}/>
-                <Route path = '/test' component = {Test}/>
-                <Route path = '/friends' component = {FriendsPage}/>
-                <Route path = '/user/:username' component = {UserSearch} />
-                <Route path = '*' component = {Errorpage}/>
-            </Switch>
-        <Footer />
+            <Header />
+            <div className="components">
+                <Switch>
+                    <Route exact path='/'><Home/></Route>
+                    <Route path='/problemset' component={ ProblemPage }/>
+                    <Route path='/login' component={ Login }/>
+                    <Route path='/logout'><Logout fn = {logoutUser}/></Route>
+                    <Route path='/forgotpassword' component={ForgotPasswordPage}/>
+                    <Route path='/:username/profile' component = {ProfilePage}/>
+                    <Route path='/list' component = {PersonalProblemset}/>
+                    <Route path = '/test' component = {Test}/>
+                    <Route path = '/friends' component = {FriendsPage}/>
+                    <Route path = '/user/:username' component = {UserSearch} />
+                    <Route path = '*' component = {Errorpage}/>
+                </Switch>
+            </div>
+            <Footer />
         </div>
     );
 };
