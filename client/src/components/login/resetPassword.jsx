@@ -3,6 +3,7 @@ import Form from '../form/formComponent';
 import {useParams, useHistory} from 'react-router-dom';
 import {resetPassword,changePassword} from '../../api/index.js';
 
+import './resetPassword.scss'
 
 export default function ResetPassword() {
     const {token} = useParams();
@@ -44,21 +45,21 @@ export default function ResetPassword() {
 
     return (
 
-        <div>
+        <div className="reset-password">
 
             {
                 token ? 
-                    <form className = "w-25 m-auto" onSubmit = {handleSubmit} >
+                    <form className = "m-auto" onSubmit = {handleSubmit} >
                         <Form  name = "newPassword" value = {state.newPassword} type = "password" id = "#password" required = {true} handleChange = {handleChange} label = "New Password" />
                         <Form  name = "confirmNP" value = {state.confirmNP} type = "password" id = "#confirmPassword" required = {true} handleChange = {handleChange} label = "Confirm Password" />
-                        <button className = "btn btn-primary btn-sm" type = "submit">Submit</button> 
+                        <button className = "button" type = "submit">Submit</button> 
                     </form>
                 :
-                    <form className = "w-25 m-auto" onSubmit = {handleSubmit1} >
+                    <form className = "m-auto" onSubmit = {handleSubmit1} >
                         <Form  name = "currPassword" value = {state.currPassword} type = "password" id = "#currPassword" required = {true} handleChange = {handleChange} label = "Current Password" />
                         <Form  name = "newPassword" value = {state.newPassword} type = "password" id = "#password" required = {true} handleChange = {handleChange} label = "New Password" />
                         <Form  name = "confirmNP" value = {state.confirmNP} type = "password" id = "#confirmPassword" required = {true} handleChange = {handleChange} label = "Confirm Password" />
-                        <button className = "btn btn-primary btn-sm" type = "submit">Submit</button> 
+                        <button className = "button" type = "submit">Submit</button> 
                     </form>
             }
 

@@ -3,6 +3,7 @@ import Form from '../form/formComponent';
 import {useHistory, useLocation} from 'react-router-dom';
 import {forgotPassword} from '../../api/index';
 
+import './forgotPassword.scss';
 
 export default function ForgotPassword() {
 
@@ -32,17 +33,17 @@ export default function ForgotPassword() {
     };
     
     return (
-        <div>
+        <div className="forgot-password">
             {
                 state ?
-                    <h2 className="m-auto">Yamette Kudasai!!</h2>
+                    <h4 className="">Email is being sent, please wait...</h4>
                 :
                     <div>
-                        <h2 className = "m-auto">Password Reset</h2>
+                        <h3 className = "m-auto">Password Reset</h3>
                         <div className = "form">
                             <form onSubmit = {handleSubmit}>
                                 <Form name = "email" type = "email" value = {data.email} id = "#email" required = {true} handleChange = {handleChange} label = "Email" />
-                                <button className = "btn btn-primary btn-sm" type = "submit">Submit</button>
+                                <button className = "button" type = "submit">Submit</button>
                             </form>
                         </div>
                     </div>

@@ -35,7 +35,6 @@ function ProfileComponent({match, user, fetchUser}) {
             await updateProfilePhoto(data);
             fetchUser();
             setfile(null);
-            alert("success");
         } catch(err) {
             alert(err.response.data.message)
         }
@@ -45,7 +44,6 @@ function ProfileComponent({match, user, fetchUser}) {
         e.preventDefault();
         try{
             await updateDetails({email});
-            alert("success");
         } catch(err) {
             console.log(err.response);
             alert(err.response?.data.message);
@@ -53,38 +51,37 @@ function ProfileComponent({match, user, fetchUser}) {
     };
 
     return (
-        <div>
-            <h2>Profile Page</h2>
+        <div className="profile">
 
-            <div className="container">
-                {
-                    user ? <img src={`http://localhost:4000/images/user/${user?.photo}`} className="img-fluid img-thumbnail img" alt="default"></img> : null
-                }
-                <h3 className="username">{user?.username}</h3>
-            </div>
-            <div>
-                <Link to = {`${match.url}/resetpassword`}>Change Password</Link>
-            </div>
+            <div className="forms">
 
-            <div className="container">
-                <div className="row">
-                <form className="col-6" onSubmit = {handlePhotoSubmit} encType = "multipart/form-data">
+                <form className="form" onSubmit = {handlePhotoSubmit} encType = "multipart/form-data">
                     <Form name = "updatephoto" type="file" className="form-control" id="photo" handleChange = {handlePhotoChange} label="Update Profile Photo"/>
-                    <button className = "btn btn-primary btn-sm" type = "submit" disabled = {file === null}>Update Profile</button>
+                    <button className = "" type = "submit" disabled = {file === null}>Upload</button>
                 </form>
 
-
-                <form  className = "col-6 w-50"onSubmit = {handleDetailSubmit} encType = "multipart/form-data">
+                <form className = "form" onSubmit = {handleDetailSubmit} encType = "multipart/form-data">
                     {
                         user ?
                             <Form name = "updateemail" type="email" className="form-control" id="email" handleChange = {handleEmailChange} placeholder = {value} label="Update Email"/>
                         :
                             null
                     }
-                    <button className = "btn btn-primary btn-sm" type = "submit" disabled = {email === '' ? true:false}>Update</button>
+                    <button className = "" type = "submit" disabled = {email === '' ? true:false}>Update</button>
                 </form>
+
+                <div>
+                    <Link className="change-password" to = {`${match.url}/resetpassword`}>Change Password</Link>
                 </div>
+                
             </div>
+            <div className="user">
+                {
+                    user ? <img src={`http://localhost:4000/images/user/${user?.photo}`} className="img" alt="default"></img> : null
+                }
+                <h3 className="username">{user?.username}</h3>
+            </div>
+            
         </div>
     )
 }

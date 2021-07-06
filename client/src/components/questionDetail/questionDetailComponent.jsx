@@ -8,6 +8,8 @@ import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector'
 import {postComment} from '../../api/index';
 import {fetchQuestion} from '../../redux/question/questionAction.js';
 
+import './question.scss';
+
 function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, problemset}) {
 
     const [form, setform] = useState({
@@ -57,7 +59,7 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
     }
 
     return (
-        <div>
+        <div className="question">
             <h3>{question?.title}</h3>
             <a href = {question?.link} target = '_blank' rel="noreferrer">Click Here</a>
             {   
