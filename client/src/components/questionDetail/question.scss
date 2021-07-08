@@ -1,3 +1,55 @@
-.question{
-    margin-top: 10%;
+.wrapper{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 5%;
+
+    .header{
+        display: flex;
+        margin-bottom: -1.5%;
+        justify-content: space-between;
+
+        .statement{
+            font-size: 40px;
+            font-family: VT323;
+        }
+        .fav{
+            
+            .btn{
+                font-size: 15px;
+                background-color: #121212;
+                color: #d4d4d4;
+                border: 3px solid #d4d4d4;
+            }
+            
+            .btn:hover {
+                background-color: rgba(14,173,105,0.65);
+                color: #121212;
+                text-decoration: underline;
+            }
+
+            .message{
+                color: #0ead69;
+                font-size:17px;
+            }
+        }
+    } 
+
+    .question{
+        font-size: 40px;
+        font-family: VT323;
+        line-height: 100%;
+    
+        .title{
+            font-family: 'Space Mono';
+            font-size: 25px;
+            
+        }
+        .link{
+            font-family: 'Space Mono';
+            font-size: 25px;
+            color: #0ead69
+        }
+    }
+       
 }
+

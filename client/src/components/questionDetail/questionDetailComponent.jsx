@@ -15,7 +15,6 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
     const [form, setform] = useState({
         text: '',
     });
-
     const [isfav, setisfav] = useState(false);
 
     useEffect(() => {
@@ -32,7 +31,6 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
             topic: question.topic,
             title: question.title
         }
-    
         try{
             await addToFavorite(data);
             fetchUser();
@@ -53,28 +51,38 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
             await postComment(question.id, {...form});
             setform({text:''});
             fetchQuestion(question.index);
-        } catch (err) {
+        }catch (err) {
             alert(err.response?.data?.message);
         }
     }
 
     return (
-        <div className="question">
-            <h3>{question?.title}</h3>
-            <a href = {question?.link} target = '_blank' rel="noreferrer">Click Here</a>
-            {   
-                user ?
-                    isfav ? null :
-                        <button className = 'btn btn-primary btn-sm' onClick = {(e) => { e.preventDefault(); return handleClick(question)}} >Add to Favorite</button>
-                :
-                    null
-            }
-            <br/><br/>
-            <form onSubmit={handleSubmit}>
-                <textarea name="text" value = {form.text} className="form-control" id="#comment" placeholder="Type comment here..." onChange={handleChange} rows="3" required/>
-                <input type="submit" className = "btn btn-primary btn-sm"/>
-            </form>
-            <CommentComponent comments = {question.comments} user={user} idx = {question.index}/>
+        <div className="wrapper">
+            
+            <div className="header">
+                <p className="statement">Problem statement: <br/></p>
+                <div className="fav">
+                {   
+                    user ?
+                        isfav ? <p className = "message">Added to favorite</p> :
+                            <button className = 'btn' onClick = {(e) => { e.preventDefault(); return handleClick(question)}} >Add to Favorite</button>
+                    :
+                        null
+                }
+                </div>
+            </div>
+            <div className="question">
+                <p><span className="title">{question?.title}</span></p>
+
+                <p className >Link to problem: <span ><a href = {question?.link} target = '_blank' rel="noreferrer" className = "link">Click Here</a></span></p>
+
+                <br/><br/>
+                <form onSubmit={handleSubmit}>
+                    <textarea name="text" value = {form.text} className="form-control" id="#comment" placeholder="Type comment here..." onChange={handleChange} rows="3" required/>
+                    <input type="submit" className = "btn btn-primary btn-sm"/>
+                </form>
+                <CommentComponent comments = {question.comments} user={user} idx = {question.index}/>
+            </div>
         </div>
     )
 };
