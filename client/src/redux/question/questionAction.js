@@ -25,8 +25,8 @@ export const fetchQuestion = (id) => {
             const res = await getQuestion(id);
             dispatch(fetchingSuccess(res.data.data.question));
         } catch(err) {
-            dispatch(fetchFail(err.response.data.message));
-            alert(err.response.data.message);
+            dispatch(fetchFail(err.response?.data.message));
+            alert(err.response?.data.message);
         }
     }
 };

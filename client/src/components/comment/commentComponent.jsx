@@ -9,7 +9,7 @@ function CommentComponent({comments, user, idx}) {
     let cmt = [...comments];
     cmt.reverse();
     return (
-        <div className="container mt-5">
+        <div className="container">
             <div className="row d-flex justify-content-center">
                 <div className="col-md-8">
                     <div className="headings d-flex justify-content-between align-items-center mb-3">

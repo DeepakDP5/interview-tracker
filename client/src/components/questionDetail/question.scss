@@ -1,53 +1,58 @@
-.wrapper{
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 5%;
+.wrapper {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 6%;
 
-    .header{
-        display: flex;
-        margin-bottom: -1.5%;
+    .problem-statement {
+        flex-grow: 1;
         justify-content: space-between;
-
-        .statement{
+        line-height: 200%;
+        
+        .statement {
             font-size: 40px;
             font-family: VT323;
-        }
-        .fav{
-            
-            .btn{
-                font-size: 15px;
-                background-color: #121212;
-                color: #d4d4d4;
-                border: 3px solid #d4d4d4;
-            }
-            
-            .btn:hover {
-                background-color: rgba(14,173,105,0.65);
-                color: #121212;
-                text-decoration: underline;
-            }
-
-            .message{
-                color: #0ead69;
-                font-size:17px;
+            .title {
+                font-family: 'Space Mono';
+                font-size: 25px;
             }
         }
-    } 
-
-    .question{
-        font-size: 40px;
-        font-family: VT323;
-        line-height: 100%;
-    
-        .title{
-            font-family: 'Space Mono';
-            font-size: 25px;
-            
+        .question {
+            margin-top: 3%;
+            display: flex;
+            align-items: baseline;
+            .link-text {
+                .link {
+                    font-size: 20px;
+                    color: #0ead69
+                }
+            }
+            .fav{
+                padding-left: 5rem;
+                .button {
+                    font-size: 20px;
+                    background-color: #121212;
+                    color: #d4d4d4;
+                    border: transparent;
+                    height: 2.5rem;
+                }
+                .button:hover {
+                    color: #0ead69;
+                    text-decoration: underline;
+                }
+                .message {
+                    font-size: 22px;
+                    color: #0ead69;
+                }
+            }
         }
-        .link{
-            font-family: 'Space Mono';
-            font-size: 25px;
-            color: #0ead69
+    }
+    .comments-container {
+        margin-top: 5%;
+        .comments-form {
+            width: 50%;
+        }
+        .comments {
+            width: 100%;
         }
     }
        

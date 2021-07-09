@@ -19,7 +19,7 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
 
     useEffect(() => {
         let favList = problemset?.find(el => el.name === 'Favorite');
-        const res = favList?.list?.find(el => el.link === question.link);
+        const res = favList?.list?.find(el => el.link === question?.link);
         res ? setisfav(true) : setisfav(false);
         console.log(res);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,30 +58,35 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
 
     return (
         <div className="wrapper">
-            
-            <div className="header">
-                <p className="statement">Problem statement: <br/></p>
-                <div className="fav">
-                {   
-                    user ?
-                        isfav ? <p className = "message">Added to favorite</p> :
-                            <button className = 'btn' onClick = {(e) => { e.preventDefault(); return handleClick(question)}} >Add to Favorite</button>
-                    :
-                        null
-                }
+            <div className="problem-statement">
+                <p className="statement">Problem statement: <span className="title">{question?.title}</span></p>
+                <div className="question">
+                    <div className="link-text">
+                        <a href = {question?.link} target = '_blank' rel="noreferrer" className = "link">Link to problem</a>
+                    </div>
+                    <div className="fav">
+                    {   
+                        user ?
+                            isfav ? <p className = "message">Added to favorite</p> :
+                                <button className = "button" onClick = {(e) => { e.preventDefault(); return handleClick(question)}} >Add to Favorite</button>
+                        :
+                            null
+                    }
+                    </div>
                 </div>
             </div>
-            <div className="question">
-                <p><span className="title">{question?.title}</span></p>
-
-                <p className >Link to problem: <span ><a href = {question?.link} target = '_blank' rel="noreferrer" className = "link">Click Here</a></span></p>
-
-                <br/><br/>
-                <form onSubmit={handleSubmit}>
-                    <textarea name="text" value = {form.text} className="form-control" id="#comment" placeholder="Type comment here..." onChange={handleChange} rows="3" required/>
-                    <input type="submit" className = "btn btn-primary btn-sm"/>
-                </form>
-                <CommentComponent comments = {question.comments} user={user} idx = {question.index}/>
+            <div className = "comments-container">
+                <div className = "comments-form">
+                    <form onSubmit={handleSubmit}>
+                        <textarea name="text" value = {form.text} className="form-control" id="#comment" placeholder="Type comment here..." onChange={handleChange} rows="3" required/>
+                        <input type="submit" className = "btn btn-primary btn-sm"/>
+                    </form>
+                </div>
+                <div className="comments">
+                    {
+                        question?.comments ? <CommentComponent comments = {question?.comments} user={user} idx = {question?.index}/> : null
+                    }
+                </div>
             </div>
         </div>
     )

@@ -14,7 +14,7 @@ const commentSchema = mongoose.Schema({
         ref: 'question'
     },
     date:{
-        type: Date,
+        type: Number,
         default: Date.now()
     },
     versionKey: false
