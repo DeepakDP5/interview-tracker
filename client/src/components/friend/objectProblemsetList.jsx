@@ -1,18 +1,14 @@
-import React,{useState} from 'react';
-import ObjectProblemsetListItem from './objectProblemsetListItem';
+import React from 'react';
 
-export default function ObjectProblemsetList({list}) {
+export default function ObjectProblemsetList({list,index,func}) {  
 
-    const [show , setShow]  = useState(false);
-    
+    const handleClick = ()=> {
+        func(list.name)
+    } 
     return (
-        <div>
-            <li className="list-group-item d-flex justify-content-between align-items-center" style = {{cursor: 'pointer'}} onClick={(e) => setShow(state => !state)}>
-                {list.name}
-            </li>
-        {
-            show ? <ObjectProblemsetListItem key = {list._id} list = {list.list} /> : null
-        }
-        </div>
+        <tr>
+            <td className = "list-index">{index}</td>
+            <td className = "list-name" onClick = {handleClick}>{list.name}</td>
+        </tr>
     )
 }

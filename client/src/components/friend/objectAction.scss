@@ -1,0 +1,156 @@
+.object-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7%;
+
+    .object-details{
+        padding: 2%;
+        margin-left: 5%;
+        width: 30%;
+        align-self: start;
+
+        .detail-component{
+            margin: 5% 5% 3% 5%;
+            
+            .object-image{
+                border: 2px solid #d4d4d4;
+                height: 15em;
+                width: 25em;
+                object-fit: cover; 
+            }
+    
+            .object-username{
+                font-size: large;
+                margin-top: 2%;
+                text-align: left;
+            }
+    
+            .confirm-yes{
+                background-color: #121212;
+                color: #d4d4d4;
+                font-size: large;
+                border: 2px solid #d4d4d4;
+            }
+    
+            .confirm-yes:hover{
+                background-color: rgba(14,173,105,0.65);
+                color: #121212;
+                text-decoration: underline;
+            }
+    
+            .confirm-no{
+                background-color: #121212;
+                color: #d4d4d4;
+                font-size: large;
+                border: 2px solid #d4d4d4;
+            }
+    
+            .confirm-no:hover{
+                background-color: rgba(255, 89, 94, 0.65);
+                color: #121212;
+                text-decoration: underline;
+            }
+
+            .confirm-accept{
+                background-color: #121212;
+                color: #d4d4d4;
+                border: 3px solid #d4d4d4;
+                width: 30%;
+                font-size: large;
+            }
+        
+            .confirm-accept:hover{
+                background-color: rgba(14,173,105,0.65);
+                color: #121212;
+                text-decoration: underline;
+            }
+        
+            .confirm-reject{
+                background-color: #121212;
+                color: #d4d4d4;
+                border: 3px solid #d4d4d4;
+                width: 30%;
+               margin-left: 15%;
+                font-size: large;
+            }
+        
+            .confirm-reject:hover{
+                background-color: rgba(255, 89, 94, 0.65);
+                color: #121212;
+                text-decoration: underline;
+            }
+
+        }
+    }
+    .object-problemset{
+        margin-right: 5%;
+        width: 50%;
+        font-size: large;
+
+        .problemset-container{
+            padding: 5%;
+
+            .object-problemset-heading{
+                font-size:large;
+            }
+
+            .object-problemset-table,td{
+                color :#d6d6d6;
+                border : 2.5px solid #d6d6d6;
+                border-collapse: collapse;
+                text-align: center;
+
+                tr{
+                    height: 38px;
+                }
+
+                .list-index{
+                    width: 5%;
+                }
+        
+                .list-name{
+                    width: 40%;
+                    padding-left: 1%;
+                    text-align:left;
+                    cursor: pointer;
+                }
+                .list-name:hover{
+                    text-decoration: underline;
+                }
+            }
+        }        
+    }
+}
+
+.list-item-wrapper{
+    font-size: large;
+    margin-left: 47%;
+    margin-bottom: 2%;
+    margin-right: 4%;
+    width: 50%; 
+    table,td{
+        color :#d6d6d6;
+        border : 2.5px solid #d6d6d6;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    tr{
+        height: 38px;
+    }
+
+    .list-item-index{
+        width: 5%;
+    }
+
+    .list-item{
+        width: 40%;
+        padding-left: 1%;
+        text-align:left;
+        cursor: pointer;
+    }
+
+    .list-item-title{
+        color: #d6d6d6;
+    }
+}

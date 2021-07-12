@@ -4,9 +4,9 @@ import {useParams} from 'react-router-dom';
 import {fetchObject} from '../../redux/object/objectAction';
 import {connect} from 'react-redux';
 import {isLoading} from '../../redux/object/objectSelector';
-import UserSearchComponent from './userSearchComponent';
+import ObjectActionComponent from './objectActionsComponent';
 
-const UserWithSpinner = WithSpinner(UserSearchComponent);
+const UserWithSpinner = WithSpinner(ObjectActionComponent);
 
 function UserSearch({fetchObject,isLoading}) {
 

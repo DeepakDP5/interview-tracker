@@ -33,7 +33,7 @@ const FriendComponent = ({object,index,fetchUser}) => {
 				</Link>
             </td>
 			<td className="unfriend" onClick={() => {setShowModal(true)}}>
-				Unfriend
+				Remove Friend
 			</td>
 
            {

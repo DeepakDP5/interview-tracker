@@ -79,7 +79,7 @@ function ProfileComponent({match, user, fetchUser}) {
                 {
                     user ? <img src={`http://localhost:4000/images/user/${user?.photo}`} className="img" alt="default"></img> : null
                 }
-                <h3 className="username">{user?.username}</h3>
+                <h4 className="username">{user?.username}</h4>
             </div>
             
         </div>

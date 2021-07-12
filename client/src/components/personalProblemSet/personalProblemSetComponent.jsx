@@ -25,6 +25,7 @@ const PersonalProblemSetComponent = ({user, fetchUser, problemset}) => {
     const [formData,setFormData] = useState({
         name: '',
     });
+    
     const handleChange = (e)=>{
         setFormData({
             [e.target.name]: e.target.value
@@ -47,6 +48,7 @@ const PersonalProblemSetComponent = ({user, fetchUser, problemset}) => {
     const func = (name) =>{
         history.push(`${loc.pathname}?name=${name}`)
     };
+
     let playlist = {};
     
     if(user){

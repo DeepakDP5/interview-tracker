@@ -12,22 +12,26 @@ function FriendListComponent({user}) {
             <div className="friends">
                 <h6 className = "heading">Friends</h6>
                 <table className="friendItem">
-                    {
-                        user?.friends.map((e,i) => 
-                            <FriendComponent key = {e._id} object = {e} index = {i+1} />
-                        )
-                    }
+                    <tbody>
+                        {
+                            user?.friends.map((e,i) => 
+                                <FriendComponent key = {e._id} object = {e} index = {i+1} />
+                            )
+                        }
+                    </tbody>
                 </table>
             </div>
             
             <div className="friendRequest">
                 <h6 className = "heading">Friend Requests</h6>
                 <table className="friendRequestItem">
-                    {
-                        user?.friendRequests.map((e,i) => 
-                            <FriendRequestComponent key = {e._id} object = {e} index = {i+1}/>
-                        )
-                    }
+                    <tbody>
+                        {
+                            user?.friendRequests.map((e,i) => 
+                                <FriendRequestComponent key = {e._id} object = {e} index = {i+1}/>
+                            )
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
