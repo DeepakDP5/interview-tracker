@@ -8,7 +8,7 @@ import {object} from '../../redux/object/objectSelector';
 import {fetchObject} from '../../redux/object/objectAction';
 import {useHistory} from 'react-router-dom';
 
-function UserSearchComponent({object,user,fetchUser,fetchObject}) {
+const UserSearchComponent = ({object,user,fetchUser,fetchObject}) => {
 
     const history = useHistory();
 

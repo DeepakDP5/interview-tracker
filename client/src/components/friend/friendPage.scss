@@ -1,0 +1,69 @@
+.wrapper1{ 
+    display: flex;
+    margin-bottom: 8%;
+    margin-left: 0;
+    margin-top: 0;
+    justify-content: space-between;
+
+    .friendRequest, .friends{
+        display: flex;
+        font-size: medium;
+        flex-direction: column;
+        width: 40%;
+        margin: 10% 5% 0% 5%;
+
+        table, td {
+            color :#d6d6d6;
+            border : 2.5px solid #d6d6d6;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+        tr{
+            height: 38px;
+        }
+
+        .col1{
+            width: 5%;
+        }
+
+        .col2{
+            padding-left: 10px;
+            text-align:left;
+            .username{
+                color: #d6d6d6;
+            }
+        }
+
+        .accept,.reject{
+            width: 15%;
+            cursor: pointer;
+        }
+
+        .accept:hover{
+            background-color: rgba(14,173,105,0.65);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .reject:hover{
+            background-color:  rgba(255, 89, 94, 0.65);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .unfriend{
+            width: 20%;
+        }
+        .unfriend:hover{
+            background-color:  rgba(255, 89, 94, 0.65);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+
+h6{
+    color:#d6d6d6;
+}
+

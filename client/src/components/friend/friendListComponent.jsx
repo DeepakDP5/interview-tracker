@@ -3,30 +3,32 @@ import {getUserSelector} from '../../redux/user/userSelector';
 import {connect} from 'react-redux';
 import FriendComponent from './friendComponent';
 import FriendRequestComponent from './friendRequestComponent';
+import './friendPage.scss';
+
 
 function FriendListComponent({user}) {
     return (
-        <div className = "justify-content-around d-flex">
-            <div className="mr-2 ml-2 w-25">
-                <h6>My friends</h6>
-                <ol className="list-group">
+        <div className = "wrapper1">
+            <div className="friends">
+                <h6 className = "heading">Friends</h6>
+                <table className="friendItem">
                     {
-                        user?.friends.map(e => 
-                            <FriendComponent key = {e._id} object = {e} />
+                        user?.friends.map((e,i) => 
+                            <FriendComponent key = {e._id} object = {e} index = {i+1} />
                         )
                     }
-                </ol>
+                </table>
             </div>
-
-            <div className="mr-2 ml-2 w-25">
-                <h6>Friend Requests</h6>
-                <ol className="list-group">
+            
+            <div className="friendRequest">
+                <h6 className = "heading">Friend Requests</h6>
+                <table className="friendRequestItem">
                     {
-                        user?.friendRequests.map(e => 
-                            <FriendRequestComponent key = {e._id} object = {e} />
+                        user?.friendRequests.map((e,i) => 
+                            <FriendRequestComponent key = {e._id} object = {e} index = {i+1}/>
                         )
                     }
-                </ol>
+                </table>
             </div>
         </div>
     )

@@ -30,7 +30,7 @@ function Question({ question, user, checked, fetchUser }) {
         <tr>
             <td className="col1">{question.index}</td>
             <td className="col2">
-                <Link to ={`/problemset/problem/${question.index}`} style={{textDecoration: 'none',color:'#d6d6d6'} }>
+                <Link to ={`/problemset/problem/${question.index}`} className = "question-title">
                     {question.title}
                 </Link>
             </td>
