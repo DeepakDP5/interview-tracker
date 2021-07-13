@@ -48,6 +48,7 @@ const ObjectActionComponent = ({object,user,fetchUser,fetchObject}) => {
             await removeFriend(object?._id);
             fetchUser();
             fetchObject(object?.username);
+            hideModal();
         } catch(err){
             alert(err.response.data.message);
         }
@@ -100,14 +101,15 @@ const ObjectActionComponent = ({object,user,fetchUser,fetchObject}) => {
         history.push(`${loc.pathname}?problemset=${name}`)
     }
 
-    const {username,problemsets,photo} = object;
+    let {username,problemsets,photo} = object;
+    problemsets = problemsets.filter(el => el.public === true);
+    console.log(problemsets);
     const particularProblemset = problemsets.find(el => el.name === value.problemset);
     //console.log(particularProblemset);
     return (
         <div>
-            { object ?   
-
-                <div className = "object-wrapper">
+            { object ? 
+                <div className = "object-detail-wrapper">  
                     <div className = "object-details">
                         <div className = "detail-component">
                             <img className = "object-image" src={`http://localhost:4000/images/user/${photo}`} alt={username}></img><br/>
@@ -126,33 +128,42 @@ const ObjectActionComponent = ({object,user,fetchUser,fetchObject}) => {
                                                 </div>))
                             }
                         </div>
+                        {
+                            show ? <Modal onHide={hideModal} show = {show} handleDeleteEle = {handleRemoveFriend} hideModal = {hideModal} /> : null
+                        }
                     </div>
-                    {
-                        show ? <Modal onHide={hideModal} show = {show} handleDeleteEle = {handleRemoveFriend} hideModal = {hideModal} /> : null
-                    }
 
-                    <div className="object-problemset">
-                        <div className = "problemset-container">
-                            <p className = "object-problemset-heading">{`${username}'s problemset`}</p>
-                            <table className = "object-problemset-table">
-                                <tbody>
-                                    {
-                                        problemsets.map((el,i) => 
-                                            el.public ? <ObjectProblemsetList key = {el._id} list = {el} index = {i} func = {func}/> : null
-                                        )
-                                    }
-                                </tbody>
-                            </table>
+                    <div className = "object-problemset-wrapper">
+                        <div className="object-problemset">
+                            <div className = "problemset-container">
+                                <p className = "object-problemset-heading">{`${username}'s problemset`}</p>
+                                {
+                                    problemsets.length > 0 ? 
+                                        <table className = "object-problemset-table">
+                                            <tbody>
+                                            {
+                                                problemsets.map((el,i) => 
+                                                    <ObjectProblemsetList key = {el._id} list = {el} index = {i+1} func = {func}/>
+                                                )
+                                            }
+                                            </tbody>
+                                        </table>
+                                    : 
+                                        <p className = "empty">Wow,such empty</p>
+                                }
+                                
+                            </div>
                         </div>
+                        {
+                            value.problemset ? <ObjectProblemsetListItem className = "list-item-wrapper" list = {particularProblemset}/> : null
+                        } 
                     </div>
                 </div>
                 : 
                 null 
             }
 
-            {
-                value.problemset ? <ObjectProblemsetListItem className = "list-item-wrapper" list = {particularProblemset}/> : null
-            } 
+            
         </div>
     )
 };

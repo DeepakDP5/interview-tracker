@@ -1,16 +1,15 @@
 .personal-problemset {
     color: #d4d4d4;
     margin-top: 1%;
-    
 
     .problemset-container {
         display: flex;
-        margin: 5% 10% 0% 10%;
+        margin: 5% 5% 0% 10%;
 
         .playlists{
             width: 30%;
             margin-left: 5%;
-            margin-right: 30%;
+            margin-right: 5%;
             background-color: #121212;
             font-size: medium;
 
@@ -20,7 +19,6 @@
 
                 .problemset-name {
                     width: 100%;
-                    // padding-top: 10px;
                 }
 
                 .arrow {
@@ -35,11 +33,6 @@
                     color: #d4d4d4;
                 }
             }
-        }
-        
-        .list{
-            width:30%;
-            margin-right: 5%;
         }
     }
     

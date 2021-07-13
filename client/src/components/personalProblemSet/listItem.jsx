@@ -7,7 +7,7 @@ import ConfirmRemoveCompoment from './../confirmRemoveForm/confirmRemoveCompomen
 
 const Modal = ModalWrapper(ConfirmRemoveCompoment);
 
-function ListItem({el, sid, fetchUser}) {
+function ListItem({el, sid, fetchUser,index}) {
 
     const [modalShow,setModalShow] = useState(false);
 
@@ -28,13 +28,12 @@ function ListItem({el, sid, fetchUser}) {
     }
 
     return (
-        <div>
-            <li className="list-group-item d-flex justify-content-between align-items-center pt-1 pb-1" style = {{cursor: 'pointer'}}>
-                <a href = {el.link} target = "_blank" rel="noreferrer" style = {{textDecoration:'none'}}>{el.title}</a>
-                <button type="button" className="close" aria-label="Close"><span aria-hidden="true" onClick={() => setModalShow(true)}>x</span></button>
-                <Modal onHide={() => setModalShow(false)} show = {modalShow} handleDeleteEle = {handleDeleteEle} hideModal = {hideModal} />
-            </li>
-        </div>
+        <tr className = "table-row">
+            <td className = "table-col list-index">{index}</td>
+            <td className = "table-col list-name"><a href = {el.link} target = "_blank" rel="noreferrer" className = "list-title">{el.title}</a></td>
+            <td className = "table-col list-item-remove" onClick = {() => setModalShow(true)}>Remove</td>
+            <Modal onHide={() => setModalShow(false)} show = {modalShow} handleDeleteEle = {handleDeleteEle} hideModal = {hideModal} />
+        </tr>
     )
 }
 

@@ -79,9 +79,10 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
                 <div className = "comments-form">
                     <form onSubmit={handleSubmit}>
                         <textarea name="text" value = {form.text} className="form-control" id="#comment" placeholder="Type comment here..." onChange={handleChange} rows="3" required/>
-                        <input type="submit" className = "btn btn-primary btn-sm"/>
+                        <input type="submit" className = "comment-submit-btn"/>
                     </form>
                 </div>
+
                 <div className="comments">
                     {
                         question?.comments ? <CommentComponent comments = {question?.comments} user={user} idx = {question?.index}/> : null

@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import NewListItemForm from './newListItemForm';
 import ModalWrapper from '../../components/modal/modal';
 import{fetchUser} from '../../redux/user/userActions';
+import './problemSetListComponent.scss';
 
 const Modal = ModalWrapper(NewListItemForm);
 
@@ -55,28 +56,29 @@ function ProblemSetListComponent({playlist, fetchUser}) {
         }
     };
     return (
-        <div>
-            <h5>{playlist.name}</h5>
-            <div className="form-check ml-auto">
+        <div className = "list-item-wrapper">
+            <p className = "list-name">{playlist.name}</p>
+            {/* <div className="form-check ml-auto">
                 <input className="form-check-input" type="checkbox" value="" id= {`${playlist._id}`} checked = {playlist.public} onChange = {() => handleToggle(playlist._id)}/>
-            </div> 
-            <br/>
-            <div className="list-group">
-            {
-                playlist?.list?.map((el, i) =>(
-                    <ListItem key = {i} el = {el} sid = {playlist._id} />
-                ))
-            }
+            </div>  */}
+            <div className="list-item">
+                <table className = "list-item-table">
+                    <tbody>
+                        {
+                            playlist?.list?.map((el, i) =>(
+                                <ListItem key = {i} el = {el} sid = {playlist._id} index = {i+1}/>
+                            ))
+                        }
+                    </tbody>
+                </table>
             </div>
-
-            <div>
                 {
                     modalShow ? null
                     :
-                    <button className="btn btn-primary mt-3" onClick = {() => setModalShow(true)}>Add Problem</button>
+                    <button className="add-problem" onClick = {() => setModalShow(true)}>Add Problem</button>
                 }
                 <Modal onHide={() => setModalShow(false)} show = {modalShow} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formdata}/>
-            </div>
+            
         </div>
     )
 };

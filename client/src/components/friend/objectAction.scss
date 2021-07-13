@@ -1,14 +1,12 @@
-.object-wrapper{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 7%;
+.object-detail-wrapper{
+    margin-top: 4%;
+    margin-left: 2%;
 
     .object-details{
         padding: 2%;
-        margin-left: 5%;
         width: 30%;
         align-self: start;
-
+    
         .detail-component{
             margin: 5% 5% 3% 5%;
             
@@ -50,7 +48,7 @@
                 color: #121212;
                 text-decoration: underline;
             }
-
+    
             .confirm-accept{
                 background-color: #121212;
                 color: #d4d4d4;
@@ -79,12 +77,22 @@
                 color: #121212;
                 text-decoration: underline;
             }
-
+    
         }
     }
+
+}
+
+
+
+.object-problemset-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 3%;
+
     .object-problemset{
-        margin-right: 5%;
-        width: 50%;
+        width: 70%;
         font-size: large;
 
         .problemset-container{
@@ -109,7 +117,7 @@
                 }
         
                 .list-name{
-                    width: 40%;
+                    width: 50%;
                     padding-left: 1%;
                     text-align:left;
                     cursor: pointer;
@@ -118,39 +126,44 @@
                     text-decoration: underline;
                 }
             }
+
+            .empty{
+                font-size: large;
+                margin-left: 5%;
+            }
         }        
     }
-}
-
-.list-item-wrapper{
-    font-size: large;
-    margin-left: 47%;
-    margin-bottom: 2%;
-    margin-right: 4%;
-    width: 50%; 
-    table,td{
-        color :#d6d6d6;
-        border : 2.5px solid #d6d6d6;
-        border-collapse: collapse;
-        text-align: center;
-    }
-
-    tr{
-        height: 38px;
-    }
-
-    .list-item-index{
-        width: 5%;
-    }
-
-    .list-item{
-        width: 40%;
-        padding-left: 1%;
-        text-align:left;
-        cursor: pointer;
-    }
-
-    .list-item-title{
-        color: #d6d6d6;
+    .list-item-wrapper{
+        font-size: large;
+        margin-left: 4%;
+        margin-right: 4%;
+        width: 50%; 
+        table,td{
+            color :#d6d6d6;
+            border : 2.5px solid #d6d6d6;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    
+        tr{
+            height: 38px;
+        }
+    
+        .list-item-index{
+            width: 5%;
+        }
+    
+        .list-item{
+            width: 50%;
+            padding-left: 1%;
+            text-align:left;
+            cursor: pointer;
+        }
+    
+        .list-item-title{
+            color: #d6d6d6;
+        }
     }
 }
+
+

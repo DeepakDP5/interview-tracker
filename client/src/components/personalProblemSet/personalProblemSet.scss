@@ -1,0 +1,111 @@
+.personal-problemset-wrapper{
+    margin: 7% 3% 0 3%;
+    font-size: large;
+    display:flex;
+    align-items: baseline;
+    width: 100%;
+
+    .problemset-lists{
+        padding: 1%;
+        width: 40%;
+        .playlists{
+            width: 100%;
+            .playlist-table, .table-col{
+                color :#d6d6d6;
+                border : 2.5px solid #d6d6d6;
+                border-collapse: collapse;
+                text-align: center;
+            }
+            
+            .table-row{
+                height: 38px;
+            }
+            .problemset-index{
+                width: 10%;
+            }
+            .problemset-name{
+                text-align:left;
+                cursor: pointer;
+                padding-left: 2%;
+                width: 65%;
+            }
+            .problemset-remove{
+                width: 10%;
+                padding: 0.25%;
+                cursor: pointer;
+            }
+
+            .problemset-remove:hover{
+                text-decoration: underline;
+                background-color: rgba(255, 89, 94, 0.65);
+            }
+
+            .add-new-playlist{
+                background-color: #121212;
+                border: 2px solid #d4d4d4;
+                color: #d4d4d4;
+                margin-top: 2%;
+            }
+            .add-new-playlist:hover{
+                background-color: rgba(14,173,105,0.65);
+                text-decoration: underline;
+            }
+        }
+    }
+    .list-items{
+        padding: 1%;
+        width: 40%;
+        margin-right: 5%;
+        margin-left: 18%;
+       .list-item-wrapper{
+           width: 100%;
+           .list-item{
+               width: 100%;
+               .list-item-table, .table-col{
+                    color :#d6d6d6;
+                    border : 2.5px solid #d6d6d6;
+                    border-collapse: collapse;
+                    text-align: center;
+               }
+
+               .table-row{
+                   height: 38px;
+               }
+
+               .list-index{
+                   width: 10%;
+               }
+
+               .list-name{
+                    text-align:left;
+                    cursor: pointer;
+                    width: 90%;
+                    padding-left: 2px;
+                    .list-title{
+                        color: #d6d6d6;
+                    }
+               }
+
+               .list-item-remove{
+                    cursor: pointer;
+               }
+               .list-item-remove:hover{
+                    text-decoration: underline;
+                    background-color: rgba(255, 89, 94, 0.65);
+               }
+           }
+       }
+       .add-problem{
+            background-color: #121212;
+            border: 2px solid #d4d4d4;
+            color: #d4d4d4;
+            margin-top: 2%;
+        }
+
+        .add-problem:hover{
+            background-color: rgba(14,173,105,0.65);
+            text-decoration: underline;
+        }
+    }
+
+}

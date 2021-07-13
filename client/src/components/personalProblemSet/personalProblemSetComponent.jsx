@@ -10,7 +10,8 @@ import {fetchUser} from '../../redux/user/userActions';
 import ModalWrapper from './../modal/modal';
 import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector';
 
-import './list.scss';
+import './personalProblemSet.scss';
+
 
 const Modal = ModalWrapper(CreateProblemset);
 
@@ -55,24 +56,30 @@ const PersonalProblemSetComponent = ({user, fetchUser, problemset}) => {
         playlist = user.problemsets.find(el => el.name === val.name) || [];
     }
     return (
-        <div className="personal-problemset">
-            <h4 className="ml-3">My list</h4>
-            <div  className = "problemset-container">
+        <div className="personal-problemset-wrapper">
+            <div  className = "problemset-lists">
+                <p className = "playlist-heading">My list</p>
                 <div className="playlists">
-                    {
-                        user ? 
-                            problemset.map(e => (
-                                <ProblemSetItem key = {e._id} func = {func} el = {e}/>
-                            ))
-                        :
-                            null
-                    }
-                    { modalShow1 ? null : <button onClick={() => setShowModal1(true)}  className="btn btn-primary mt-3">Add List</button> }
+                    <table className = "playlist-table">
+                        <tbody>
+                            {
+                                user ? 
+                                    problemset.map((e,i) => (
+                                        <ProblemSetItem key = {e._id} func = {func} el = {e} index = {i+1}/>
+                                    ))
+                                :
+                                    null
+                            }
+                        </tbody>
+                    </table>
+
+                    { modalShow1 ? null : <button onClick={() => setShowModal1(true)}  className="add-new-playlist">Add List</button> }
                     <Modal onHide={() => setShowModal1(false)} show = {modalShow1} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formData}/>
                 </div>
-                <div className = "list">
-                    { (user && val.name) ? <ProblemSetListComponent playlist={playlist} /> : null }
-                </div>
+            </div>
+
+            <div className = "list-items">
+                { (user && val.name) ? <ProblemSetListComponent playlist={playlist} /> : null }
             </div>
         </div>
     )
