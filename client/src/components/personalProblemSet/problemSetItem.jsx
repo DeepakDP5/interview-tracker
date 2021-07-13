@@ -37,26 +37,12 @@ function ProblemSetItem({el, func, fetchUser,index}) {
         }
     }
     return (
-
         <tr className = "table-row">
-            <td className = "table-col problemset-index">{index}</td>
+            <td className = {`table-col problemset-index ${el.name === val.name ? 'active' : ''}`}>{index}</td>
             <td className = "table-col problemset-name" onClick={(f) => func(el.name)}>{el.name}</td>
             <td className = "table-col problemset-remove" onClick={e => setModalShow(true)}>Remove</td>
             <Modal onHide={() => setModalShow(false)} show = {modalShow} handleDeleteEle = {handleDeleteEle} hideModal = {hideModal} />
         </tr>
-
-        /* <div className="problemset-item" style = {{cursor: 'pointer'}} onClick={(f) => func(el.name)}>
-            <div className={`problemset-name ${el.name === val.name ? 'active' : ''}`}><span className={`arrow ${el.name === val.name ? 'active' : ''}`}>{'->'}</span>{el.name}</div>
-            {
-                el.name === 'Favorite' ? 
-                    null
-                :
-                    <button type="button" className="close" aria-label="Close">
-                        <span aria-hidden="true" onClick={e => setModalShow(true)}>x</span>
-                    </button>
-            }
-            <Modal onHide={() => setModalShow(false)} show = {modalShow} handleDeleteEle = {handleDeleteEle} hideModal = {hideModal} />
-        </div> */
     )
 };
 

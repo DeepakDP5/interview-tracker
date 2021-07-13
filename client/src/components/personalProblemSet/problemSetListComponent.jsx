@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import NewListItemForm from './newListItemForm';
 import ModalWrapper from '../../components/modal/modal';
 import{fetchUser} from '../../redux/user/userActions';
-import './problemSetListComponent.scss';
 
 const Modal = ModalWrapper(NewListItemForm);
 
@@ -58,9 +57,6 @@ function ProblemSetListComponent({playlist, fetchUser}) {
     return (
         <div className = "list-item-wrapper">
             <p className = "list-name">{playlist.name}</p>
-            {/* <div className="form-check ml-auto">
-                <input className="form-check-input" type="checkbox" value="" id= {`${playlist._id}`} checked = {playlist.public} onChange = {() => handleToggle(playlist._id)}/>
-            </div>  */}
             <div className="list-item">
                 <table className = "list-item-table">
                     <tbody>
@@ -72,12 +68,24 @@ function ProblemSetListComponent({playlist, fetchUser}) {
                     </tbody>
                 </table>
             </div>
-                {
-                    modalShow ? null
-                    :
-                    <button className="add-problem" onClick = {() => setModalShow(true)}>Add Problem</button>
-                }
-                <Modal onHide={() => setModalShow(false)} show = {modalShow} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formdata}/>
+            <div className="buttons">
+                <div className="add-problem-button-container">
+                    {
+                        modalShow ? null
+                        :
+                        <button className="add-problem" onClick = {() => setModalShow(true)}>Add Problem</button>
+                    }
+                    <Modal onHide={() => setModalShow(false)} show = {modalShow} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formdata}/>
+                </div>
+                <div className="toggle-public-container">
+                    {/* <input className="form-check-input" type="checkbox" value="" id= {`${playlist._id}`} checked = {playlist.public} onChange = {() => handleToggle(playlist._id)}/> */}
+                    {
+                        playlist.public ?
+                            <button className="public-button" onClick = {() => handleToggle(playlist._id)}>Public</button> :
+                            <button className="private-button" onClick = {() => handleToggle(playlist._id)}>Private</button>
+                    }
+                </div>
+            </div>
             
         </div>
     )

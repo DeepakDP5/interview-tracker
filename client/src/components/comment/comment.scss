@@ -67,23 +67,21 @@
 
 .comment-container{
     margin-bottom: 3%;
-    height: 100%;
-    width: 100%;
     .comment-wrapper{
-        width:50%;
+        width: 58%;
         height: auto;
         margin-top: 2%;
         border: 3px solid #d4d4d4;
         .comment-header{
             display: flex;
-            height: 15%;
+            height: 10%;
             border-bottom: 3px solid #d4d4d4;
             .image{
-                width:10%;
+                width: 75px;
                 .user-image{
                     height: 100%;
                     width: 100%;
-                    object-fit:cover;
+                    object-fit: cover;
                 }
                 border-right: 3px solid #d4d4d4;
             }
@@ -92,7 +90,7 @@
                 align-items: center;
                 margin-top: 0.75%;
                 font-family: 'VT323';
-                width: 70%;
+                width: 83%;
                 .name{
                     font-size: 32px;
                     padding-left: 5%;
@@ -100,11 +98,9 @@
             }
 
             .time{
-                float: right;   
-                margin-right: 2%;
-
+                padding-right: 10px;
                 .comment-date{
-                    font-size: large;
+                    font-size: medium;
                     margin-top: 12%;
                     margin-bottom: 0;
                 }
@@ -112,18 +108,20 @@
         }
         .comment-body{
             .comment-text{
-                font-size: 20px;
+                margin-top: 1%;
+                margin-left: 1.5%;
+                font-size: 16px;
             }
         }
 
-        .remove-button{
+        .remove-button-container{
             margin-bottom: 1%;
-            // margin-left: 87%;
-            width: 100%;
             border-top: 3px solid #d4d4d4;
+            display: flex;
+            justify-content: flex-end;
             .remove-btn{
                 margin-top: 1%;
-                margin-left: 87%;
+                margin-right: 1%;
                 font-size: large;
                 color: #d6d6d6;
                 background-color: #121212;

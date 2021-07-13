@@ -2,7 +2,6 @@ import React from 'react';
 import {deleteComment} from '../../api/index';
 import {fetchQuestion} from '../../redux/question/questionAction.js';
 import {connect} from 'react-redux';
-import {format} from 'date-format-parse';
 
 import './comment.scss';
 
@@ -19,15 +18,23 @@ function Comment({comment, user, fetchQuestion, idx}) {
 
     const timeDelta = () => {
         const timeNow = 1*Date.now();
-        const timeDelta = timeNow - (comment?.date);
-        console.log(`timeNow: ${timeNow}    time:${comment?.date}    timeDelta:${timeDelta}`);
-        if (timeDelta < 24*60*60*1000) {
-            return format(timeDelta, 'HH:mm:ss.SSS');
+        let timeDelta = timeNow - (comment?.date);
+        // console.log(`timeNow: ${timeNow}    timeDB:${comment?.date}    timeDelta:${timeDelta}`);
+        timeDelta = Math.floor(timeDelta/1000);
+        let timeStr = ''
+        if (timeDelta < 24*60*60) {
+            let h = Math.floor(timeDelta/3600);
+            let m = (Math.floor(timeDelta/60))%60;
+            let s = timeDelta%60;
+            if (h>0) timeStr = `${h}h`;
+            else if (m>0) timeStr = `${m}m`;
+            else timeStr = `${s}s`;
+        } else {
+            let d = Math.floor(timeDelta/(24*60*60));
+            timeStr = `${d}d`;
         }
-        return format(timeDelta, 'YYYY-MM-DD HH:mm:ss.SSS');
+        return timeStr;
     }
-
-    console.log(timeDelta());
 
     return (
 
@@ -40,7 +47,7 @@ function Comment({comment, user, fetchQuestion, idx}) {
                     <p className = "name">{comment?.user.username}</p>
                 </div>
                 <div className = "time">
-                    <p className = "comment-date">{comment?.date}</p>
+                    <p className = "comment-date">{timeDelta()}</p>
                 </div>
             </div>
 
@@ -51,7 +58,7 @@ function Comment({comment, user, fetchQuestion, idx}) {
             
                 {
                     user?._id === comment?.user?._id ?
-                        <div className = "remove-button">
+                        <div className = "remove-button-container">
                             <button className="remove-btn" onClick={onDeleteComment}>Remove</button>
                         </div>
                     :

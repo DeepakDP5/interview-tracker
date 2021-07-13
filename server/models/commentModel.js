@@ -15,12 +15,12 @@ const commentSchema = mongoose.Schema({
     },
     date:{
         type: Number,
-        default: Date.now()
+        default: new Date()
     },
     versionKey: false
 },{
-    toObject:{virtuals:true},
-    toJson:{virtuals:true}
+    toObject: {virtuals:true},
+    toJson: {virtuals:true}
 });
 
 commentSchema.pre(/^find/,function(next){

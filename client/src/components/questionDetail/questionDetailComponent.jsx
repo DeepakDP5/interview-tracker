@@ -21,7 +21,6 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
         let favList = problemset?.find(el => el.name === 'Favorite');
         const res = favList?.list?.find(el => el.link === question?.link);
         res ? setisfav(true) : setisfav(false);
-        console.log(res);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [problemset,question]);
 

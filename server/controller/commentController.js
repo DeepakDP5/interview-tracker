@@ -26,7 +26,7 @@ exports.comment = aEH(async (req, res, next) => {
     const { id } = req.params;
     const { user } = req;
     if(!text) return next(new Err('Comment text is required'));
-    const comment = await Comment.create({ text, question: id, user: user.id });
+    const comment = await Comment.create({ text, question: id, user: user.id, date: new Date() });
     res.status(200).json({
         status: 'success',
         comment
