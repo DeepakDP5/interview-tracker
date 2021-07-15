@@ -31,7 +31,7 @@ const multerStorage = multer.diskStorage({
         const ext = file.mimetype.split("/")[1];
         let name = req.user.id;
         if (!name) {
-        cb(new Err("Something went wrong", 400), false);
+            cb(new Err("Something went wrong", 400), false);
         }
         cb(null, `${name}_${Date.now()}.${ext}`);
     },
@@ -70,7 +70,7 @@ exports.signUp = aEH(async (req, res, next) => {
     const { username, email, password, confirmPassword } = req.body;
     if (password !== confirmPassword)
         next(new Err("Passwords do not match", 400));
-    const list = await ProblemSet.create({ name: "Favorite" });
+    const list = await ProblemSet.create({ name: "Favorites" });
     let list1 = [];
     list1.push(list.id);
     const newUser = await User.create({
@@ -110,14 +110,14 @@ exports.forgotPassword = aEH(async (req, res, next) => {
 
     try {
         const options = {
-        email: user.email,
-        subject: "Reset Password link",
-        message: `Click <a href = "${link}">here</a> to reset your Interview Tracker account password. <br> Ignore if you did'nt request a password change.`,
+            email: user.email,
+            subject: "Reset Password link",
+            message: `Click <a href = "${link}">here</a> to reset your Interview Tracker account password. <br> Ignore if you did'nt request a password change.`,
         };
         await sendEmail(options);
         res.status(200).json({
-        status: "success",
-        message: "Mail sent",
+            status: "success",
+            message: "Mail sent",
         });
     } catch (err) {
         user.passwordChangeToken = undefined;
@@ -191,9 +191,9 @@ exports.getUser = async (req, res, next) => {
     let user1 = null;
     if (token) {
         try {
-        let jsonPayload = await jwt.verify(token, process.env.SECRETKEY);
-        user1 = await User.findById(jsonPayload.id);
-        } catch (err) {}
+            let jsonPayload = await jwt.verify(token, process.env.SECRETKEY);
+            user1 = await User.findById(jsonPayload.id);
+        } catch (err) { }
     }
     if (user1) {
         user = user1;

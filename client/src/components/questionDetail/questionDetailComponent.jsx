@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import {question} from '../../redux/question/questionSelector';
-import {connect} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { question } from '../../redux/question/questionSelector';
+import { connect } from 'react-redux';
 import CommentComponent from '../comment/commentComponent';
-import {addToFavorite} from '../../api/index';
-import {fetchUser} from '../../redux/user/userActions';
-import {getUserSelector, getUserProblemset} from '../../redux/user/userSelector';
-import {postComment} from '../../api/index';
-import {fetchQuestion} from '../../redux/question/questionAction.js';
+import { addToFavorite } from '../../api/index';
+import { fetchUser } from '../../redux/user/userActions';
+import { getUserSelector, getUserProblemset } from '../../redux/user/userSelector';
+import { postComment } from '../../api/index';
+import { fetchQuestion } from '../../redux/question/questionAction.js';
 
 import './question.scss';
 
-function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, problemset}) {
+function QuestionDetailComponent({ question, fetchUser, user, fetchQuestion, problemset }) {
 
     const [form, setform] = useState({
         text: '',
@@ -18,11 +18,10 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
     const [isfav, setisfav] = useState(false);
 
     useEffect(() => {
-        let favList = problemset?.find(el => el.name === 'Favorite');
+        let favList = problemset?.find(el => el.name === 'Favorites');
         const res = favList?.list?.find(el => el.link === question?.link);
         res ? setisfav(true) : setisfav(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [problemset,question]);
+    }, [problemset, question]);
 
     const handleClick = async (question) => {
         const data = {
@@ -30,27 +29,27 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
             topic: question.topic,
             title: question.title
         }
-        try{
+        try {
             await addToFavorite(data);
             fetchUser();
         } catch (err) {
             alert(err.response?.data?.message);
         }
     };
-    
+
     const handleChange = (e) => {
         setform({
             text: e.target.value,
         });
     }
-    
-    const handleSubmit = async(e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await postComment(question.id, {...form});
-            setform({text:''});
+            await postComment(question.id, { ...form });
+            setform({ text: '' });
             fetchQuestion(question.index);
-        }catch (err) {
+        } catch (err) {
             alert(err.response?.data?.message);
         }
     }
@@ -61,30 +60,30 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
                 <p className="statement">Problem statement: <span className="title">{question?.title}</span></p>
                 <div className="question">
                     <div className="link-text">
-                        <a href = {question?.link} target = '_blank' rel="noreferrer" className = "link">Link to problem</a>
+                        <a href={question?.link} target='_blank' rel="noreferrer" className="link">Link to problem</a>
                     </div>
                     <div className="fav">
-                    {   
-                        user ?
-                            isfav ? <p className = "message">Added to favorite</p> :
-                                <button className = "button" onClick = {(e) => { e.preventDefault(); return handleClick(question)}} >Add to Favorite</button>
-                        :
-                            null
-                    }
+                        {
+                            user ?
+                                isfav ? <p className="message">Added to favorite</p> :
+                                    <button className="button" onClick={(e) => { e.preventDefault(); return handleClick(question) }} >Add to Favorites</button>
+                                :
+                                null
+                        }
                     </div>
                 </div>
             </div>
-            <div className = "comments-container">
-                <div className = "comments-form">
+            <div className="comments-container">
+                <div className="comments-form">
                     <form onSubmit={handleSubmit}>
-                        <textarea name="text" value = {form.text} className="form-control" id="#comment" placeholder="Type comment here..." onChange={handleChange} rows="3" required/>
-                        <input type="submit" className = "comment-submit-btn"/>
+                        <textarea name="text" value={form.text} className="form-control" id="#comment" placeholder="Type comment here..." onChange={handleChange} rows="3" required />
+                        <input type="submit" className="comment-submit-btn" />
                     </form>
                 </div>
 
                 <div className="comments">
                     {
-                        question?.comments ? <CommentComponent comments = {question?.comments} user={user} idx = {question?.index}/> : null
+                        question?.comments ? <CommentComponent comments={question?.comments} user={user} idx={question?.index} /> : null
                     }
                 </div>
             </div>
@@ -92,8 +91,8 @@ function QuestionDetailComponent({question,fetchUser, user, fetchQuestion, probl
     )
 };
 
-const mapStateToProps = (state)=>({
-    question : question(state),
+const mapStateToProps = (state) => ({
+    question: question(state),
     user: getUserSelector(state),
     problemset: getUserProblemset(state),
 });

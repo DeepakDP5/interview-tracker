@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = async (options) =>{
+const sendEmail = async (options) => {
 
     // let defaultTransport = await nodemailer.createTransport('SMTP', {
     //     service: 'Gmail',

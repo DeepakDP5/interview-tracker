@@ -1,15 +1,15 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ListItem from './listItem';
-import {addProblems,handleTogglePP} from '../../api/index';
-import {connect} from 'react-redux';
+import { addProblems, handleTogglePP } from '../../api/index';
+import { connect } from 'react-redux';
 import NewListItemForm from './newListItemForm';
 import ModalWrapper from '../../components/modal/modal';
-import{fetchUser} from '../../redux/user/userActions';
+import { fetchUser } from '../../redux/user/userActions';
 
 const Modal = ModalWrapper(NewListItemForm);
 
 
-function ProblemSetListComponent({playlist, fetchUser}) {
+function ProblemSetListComponent({ playlist, fetchUser }) {
 
     const [modalShow, setModalShow] = useState(false);
     const [formdata, setformdata] = useState({
@@ -20,7 +20,7 @@ function ProblemSetListComponent({playlist, fetchUser}) {
 
     useEffect(() => {
         setModalShow(false);
-    },[playlist]);
+    }, [playlist]);
 
     const handleChange = (e) => {
         setformdata({
@@ -29,7 +29,7 @@ function ProblemSetListComponent({playlist, fetchUser}) {
         })
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             setModalShow(false);
@@ -40,29 +40,29 @@ function ProblemSetListComponent({playlist, fetchUser}) {
                 topic: '',
                 link: ''
             });
-           
-        } catch(err) {
+
+        } catch (err) {
             alert(err.response?.data?.message);
         }
     };
 
-    const handleToggle = async(id) => {
+    const handleToggle = async (id) => {
         try {
             await handleTogglePP(id);
             fetchUser();
-        }catch (err) {
+        } catch (err) {
             console.error(err);
         }
     };
     return (
-        <div className = "list-item-wrapper">
-            <p className = "list-name">{playlist.name}</p>
+        <div className="list-item-wrapper">
+            <p className="list-name">{playlist.name}</p>
             <div className="list-item">
-                <table className = "list-item-table">
+                <table className="list-item-table">
                     <tbody>
                         {
-                            playlist?.list?.map((el, i) =>(
-                                <ListItem key = {i} el = {el} sid = {playlist._id} index = {i+1}/>
+                            playlist?.list?.map((el, i) => (
+                                <ListItem key={i} el={el} sid={playlist._id} index={i + 1} />
                             ))
                         }
                     </tbody>
@@ -71,30 +71,28 @@ function ProblemSetListComponent({playlist, fetchUser}) {
             <div className="buttons">
                 <div className="add-problem-button-container">
                     {
-                        modalShow ? null
-                        :
-                        <button className="add-problem" onClick = {() => setModalShow(true)}>Add Problem</button>
+                        modalShow ? null :
+                            <button className="add-problem" onClick={() => setModalShow(true)}>Add Problem</button>
                     }
-                    <Modal onHide={() => setModalShow(false)} show = {modalShow} handleSubmit = {handleSubmit} handleChange = {handleChange} {...formdata}/>
+                    <Modal onHide={() => setModalShow(false)} show={modalShow} handleSubmit={handleSubmit} handleChange={handleChange} {...formdata} />
                 </div>
                 <div className="toggle-public-container">
-                    {/* <input className="form-check-input" type="checkbox" value="" id= {`${playlist._id}`} checked = {playlist.public} onChange = {() => handleToggle(playlist._id)}/> */}
                     {
                         playlist.public ?
-                            <button className="public-button" onClick = {() => handleToggle(playlist._id)}>Public</button> :
-                            <button className="private-button" onClick = {() => handleToggle(playlist._id)}>Private</button>
+                            <button className="public-button" onClick={() => handleToggle(playlist._id)}>Public</button> :
+                            <button className="private-button" onClick={() => handleToggle(playlist._id)}>Private</button>
                     }
                 </div>
             </div>
-            
+
         </div>
     )
 };
 
-const mapDispatchToProps = (dispatch) =>({
-    fetchUser : () => dispatch(fetchUser()),
+const mapDispatchToProps = (dispatch) => ({
+    fetchUser: () => dispatch(fetchUser()),
 });
 
 
 
-export  default connect(null, mapDispatchToProps)(ProblemSetListComponent);
+export default connect(null, mapDispatchToProps)(ProblemSetListComponent);

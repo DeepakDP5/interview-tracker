@@ -1,131 +1,140 @@
-.personal-problemset-wrapper{
-    margin: 7% 3% 0 3%;
-    font-size: large;
-    display:flex;
-    align-items: baseline;
-    .problemset-lists{
-        padding: 1%;
-        flex-grow: 1;
-        flex-basis: 35%;
-        .playlists{
-            width: 100%;
-            .playlist-table, .table-col{
-                color :#d6d6d6;
-                border : 2.5px solid #d6d6d6;
-                border-collapse: collapse;
-                text-align: center;
-            }
-            .table-row{
-                height: 38px;
-            }
-            .problemset-index{
-                width: 10%;
-            }
-            .active {
-                width: 10%;
-                background-color: rgba(14,173,105,0.65);
-            }
-            .problemset-name{
-                text-align:left;
-                cursor: pointer;
-                padding-left: 2%;
-                width: 80%;
-            }
-            .problemset-remove{
-                width: 10%;
-                padding: 0px 5px 0px 5px;
-                cursor: pointer;
-            }
+.personal-problemset-wrapper {
+	margin: 7% 3% 0 3%;
+	font-size: large;
+	display: flex;
+	align-items: baseline;
 
-            .problemset-remove:hover{
-                text-decoration: underline;
-                background-color: rgba(255, 89, 94, 0.65);
-            }
+	.problemset-lists {
+		padding: 1%;
+		flex-grow: 1;
+		flex-basis: 35%;
 
-            .add-new-playlist{
-                background-color: #121212;
-                border: 2px solid #d4d4d4;
-                color: #d4d4d4;
-                margin-top: 2%;
-            }
-            .add-new-playlist:hover{
-                background-color: rgba(14,173,105,0.65);
-                text-decoration: underline;
-            }
-        }
-    }
-    .list-items{
-        padding: 1%;
-        flex-grow: 10;
-        flex-basis: 40%;
-        margin-left: 10%;
-        .list-item-wrapper{
-            width: 100%;
-            .list-item{
-                width: 100%;
-                .list-item-table, .table-col{
-                    color :#d6d6d6;
-                    border : 2.5px solid #d6d6d6;
-                    border-collapse: collapse;
-                    text-align: center;
-                }
-                .table-row{
-                    height: 38px;
-                }
+		.playlists {
+			width: 100%;
 
-                .list-index{
-                    width: 6%;
-                }
+			.playlist-table,
+			.table-col {
+				color: #d6d6d6;
+				border: 2.5px solid #d6d6d6;
+				border-collapse: collapse;
+				text-align: center;
+			}
+			.table-row {
+				height: 38px;
+			}
+			.problemset-index {
+				width: 10%;
+			}
+			.problemset-name {
+				text-align: left;
+				cursor: pointer;
+				padding-left: 2%;
+				width: 80%;
+			}
+			.problemset-name:hover {
+				text-decoration: underline;
+			}
+			.active {
+				color: rgba(25, 130, 196, 1);
+			}
+			.problemset-remove {
+				width: 10%;
+				padding: 0px 5px 0px 5px;
+				cursor: pointer;
+			}
 
-                .list-name{
-                    text-align:left;
-                    cursor: pointer;
-                    width: 80%;
-                    padding-left: 2%;
-                    .list-title{
-                        color: #d6d6d6;
-                    }
-                }
+			.problemset-remove:hover {
+				text-decoration: underline;
+				background-color: rgba(255, 89, 94, 0.65);
+			}
 
-                .list-item-remove{
-                    width: 10%;
-                    padding: 0px 5px 0px 5px;
-                    cursor: pointer;
-                }
-                .list-item-remove:hover{
-                    text-decoration: underline;
-                    background-color: rgba(255, 89, 94, 0.65);
-                }
-            }
-            .buttons {
-                display: flex;
-                margin-top: 2%;
-                .add-problem-button-container {
-                    .add-problem{
-                        background-color: #121212;
-                        border: 2px solid #d4d4d4;
-                        color: #d4d4d4;
-                    }
-                    .add-problem:hover{
-                        background-color: rgba(14,173,105,0.65);
-                        text-decoration: underline;
-                    }
-                }
-                .toggle-public-container {
-                    margin-left: 2%;
-                    .public-button {
-                        background-color: rgba(14,173,105,0.5);
-                        border: 2px solid #d4d4d4;
-                        color: #d4d4d4;
-                    }
-                    .private-button {
-                        background-color: rgba(255, 89, 94, 0.5);
-                        border: 2px solid #d4d4d4;
-                        color: #d4d4d4;
-                    }
-                }
-            }
-        }
-       
-    }
+			.add-new-playlist {
+				background-color: #121212;
+				border: 2px solid #d4d4d4;
+				color: #d4d4d4;
+				margin-top: 2%;
+			}
+			.add-new-playlist:hover {
+				background-color: rgba(14, 173, 105, 0.65);
+				text-decoration: underline;
+			}
+		}
+	}
+	.list-items {
+		padding: 1%;
+		flex-grow: 10;
+		flex-basis: 40%;
+		margin-left: 10%;
+
+		.list-item-wrapper {
+			width: 100%;
+
+			.list-item {
+				width: 100%;
+
+				.list-item-table,
+				.table-col {
+					color: #d6d6d6;
+					border: 2.5px solid #d6d6d6;
+					border-collapse: collapse;
+					text-align: center;
+				}
+				.table-row {
+					height: 38px;
+				}
+
+				.list-index {
+					width: 6%;
+				}
+				.list-name {
+					text-align: left;
+					cursor: pointer;
+					width: 80%;
+					padding-left: 2%;
+					.list-title {
+						color: #d6d6d6;
+					}
+				}
+				.list-item-remove {
+					width: 10%;
+					padding: 0px 5px 0px 5px;
+					cursor: pointer;
+				}
+				.list-item-remove:hover {
+					text-decoration: underline;
+					background-color: rgba(255, 89, 94, 0.65);
+				}
+			}
+			.buttons {
+				display: flex;
+				margin-top: 2%;
+
+				.add-problem-button-container {
+					.add-problem {
+						background-color: #121212;
+						border: 2px solid #d4d4d4;
+						color: #d4d4d4;
+					}
+					.add-problem:hover {
+						background-color: rgba(14, 173, 105, 0.65);
+						text-decoration: underline;
+					}
+				}
+				.toggle-public-container {
+					margin-left: 2%;
+
+					.public-button {
+						background-color: rgba(14, 173, 105, 0.5);
+						border: 2px solid #d4d4d4;
+						color: #d4d4d4;
+					}
+					.private-button {
+						background-color: rgba(255, 89, 94, 0.5);
+						border: 2px solid #d4d4d4;
+						color: #d4d4d4;
+					}
+				}
+			}
+		}
+	}
 }

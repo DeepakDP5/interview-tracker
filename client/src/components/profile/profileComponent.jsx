@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import {getUserSelector} from '../../redux/user/userSelector';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { getUserSelector } from '../../redux/user/userSelector';
 import { connect } from 'react-redux';
 import Form from '../form/formComponent';
-import {updateDetails,updateProfilePhoto} from '../../api/index';
-import {fetchUser} from '../../redux/user/userActions';
+import { updateDetails, updateProfilePhoto } from '../../api/index';
+import { fetchUser } from '../../redux/user/userActions';
 
 import './profileComponent.scss';
 
-function ProfileComponent({match, user, fetchUser}) {
+function ProfileComponent({ match, user, fetchUser }) {
 
     const [file, setfile] = useState(null);
     const [email, setemail] = useState('');
@@ -27,7 +27,7 @@ function ProfileComponent({match, user, fetchUser}) {
         setfile(event.target.files[0]);
     }
 
-    const handlePhotoSubmit = async(e)=>{
+    const handlePhotoSubmit = async (e) => {
         e.preventDefault();
         let data = new FormData();
         data.append('photo', file);
@@ -35,17 +35,18 @@ function ProfileComponent({match, user, fetchUser}) {
             await updateProfilePhoto(data);
             fetchUser();
             setfile(null);
-        } catch(err) {
+        } catch (err) {
             alert(err.response.data.message)
         }
     };
 
-    const handleDetailSubmit = async(e)=>{
+    const handleDetailSubmit = async (e) => {
         e.preventDefault();
-        try{
-            await updateDetails({email});
-        } catch(err) {
-            console.log(err.response);
+        try {
+            await updateDetails({ email });
+            fetchUser();
+            setemail('');
+        } catch (err) {
             alert(err.response?.data.message);
         }
     };
@@ -55,25 +56,25 @@ function ProfileComponent({match, user, fetchUser}) {
 
             <div className="forms">
 
-                <form className="form" onSubmit = {handlePhotoSubmit} encType = "multipart/form-data">
-                    <Form name = "updatephoto" type="file" className="form-control" id="photo" handleChange = {handlePhotoChange} label="Update Profile Photo"/>
-                    <button className = "" type = "submit" disabled = {file === null}>Upload</button>
+                <form className="form" onSubmit={handlePhotoSubmit} encType="multipart/form-data">
+                    <Form name="updatephoto" type="file" className="form-control" id="photo" handleChange={handlePhotoChange} label="Update Profile Photo" />
+                    <button className="" type="submit" disabled={file === null}>Upload</button>
                 </form>
 
-                <form className = "form" onSubmit = {handleDetailSubmit} encType = "multipart/form-data">
+                <form className="form" onSubmit={handleDetailSubmit} encType="multipart/form-data">
                     {
                         user ?
-                            <Form name = "updateemail" type="email" className="form-control" id="email" handleChange = {handleEmailChange} placeholder = {value} label="Update Email"/>
-                        :
+                            <Form name="updateemail" value={email} type="email" className="form-control" id="email" handleChange={handleEmailChange} placeholder={value} label="Update Email" />
+                            :
                             null
                     }
-                    <button className = "" type = "submit" disabled = {email === '' ? true:false}>Update</button>
+                    <button className="" type="submit" disabled={email === '' ? true : false}>Update</button>
                 </form>
 
                 <div>
-                    <Link className="change-password" to = {`${match.url}/resetpassword`}>Change Password</Link>
+                    <Link className="change-password" to={`${match.url}/resetpassword`}>Change Password</Link>
                 </div>
-                
+
             </div>
             <div className="user">
                 {
@@ -81,13 +82,13 @@ function ProfileComponent({match, user, fetchUser}) {
                 }
                 <h4 className="username">{user?.username}</h4>
             </div>
-            
+
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    user: getUserSelector(state),
+    user: getUserSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
