@@ -3,7 +3,7 @@ import React from 'react';
 const ObjectProblemsetListItem = ({ list }) => {
     return (
         <div className="list-item-wrapper">
-            <p>{list?.name}</p>
+            <p className="playlist-name">{list?.name}</p>
             <table>
                 <tbody>
                     {

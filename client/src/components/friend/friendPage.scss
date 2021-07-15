@@ -49,7 +49,7 @@
 				height: 38px;
 			}
 			.col1 {
-				width: 5%;
+				width: 8%;
 			}
 			.col2 {
 				padding-left: 10px;
@@ -74,13 +74,16 @@
 				text-decoration: underline;
 			}
 			.unfriend {
-				width: 25%;
+				width: 20%;
 			}
 			.unfriend:hover {
 				background-color: rgba(255, 89, 94, 0.65);
 				cursor: pointer;
 				text-decoration: underline;
 			}
+		}
+		.friendRequest {
+			margin-left: 15%;
 		}
 	}
 }

@@ -56,7 +56,7 @@ function ProblemSetListComponent({ playlist, fetchUser }) {
     };
     return (
         <div className="list-item-wrapper">
-            <p className="list-name">{playlist.name}</p>
+            <p className="playlist-name">{playlist.name}</p>
             <div className="list-item">
                 <table className="list-item-table">
                     <tbody>

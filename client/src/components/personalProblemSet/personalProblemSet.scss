@@ -1,6 +1,6 @@
 .personal-problemset-wrapper {
 	margin: 7% 3% 0 3%;
-	font-size: large;
+	font-size: medium;
 	display: flex;
 	align-items: baseline;
 
@@ -8,6 +8,10 @@
 		padding: 1%;
 		flex-grow: 1;
 		flex-basis: 35%;
+
+		.playlist-heading {
+			font-size: 20px;
+		}
 
 		.playlists {
 			width: 100%;
@@ -69,6 +73,9 @@
 		.list-item-wrapper {
 			width: 100%;
 
+			.playlist-name {
+				font-size: 20px;
+			}
 			.list-item {
 				width: 100%;
 
