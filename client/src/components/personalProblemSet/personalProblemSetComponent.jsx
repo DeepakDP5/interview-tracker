@@ -34,16 +34,22 @@ const PersonalProblemSetComponent = ({ user, fetchUser, problemset }) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await addList(formData);
-            fetchUser();
-            setShowModal1((e) => !e);
-            setFormData({
-                name: '',
-            });
-        } catch (err) {
-            alert(err.response?.data?.message);
+        const fnd = problemset.find(el => el.name === formData.name);
+        if(!fnd){
+            try {
+                await addList(formData);
+                fetchUser();
+                setShowModal1((e) => !e);
+                setFormData({
+                    name: '',
+                });
+            } catch (err) {
+                alert(err.response?.data?.message);
+            }
+        }else{
+            alert(`Name: ${formData.name} already exists`);
         }
+        
     }
 
     const func = (name) => {

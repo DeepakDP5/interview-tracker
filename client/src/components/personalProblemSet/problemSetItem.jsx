@@ -40,7 +40,9 @@ function ProblemSetItem({ el, func, fetchUser, index }) {
         <tr className="table-row">
             <td className={`table-col problemset-index ${el.name === val.name ? 'active' : ''}`}>{index}</td>
             <td className={`table-col problemset-name ${el.name === val.name ? 'active' : ''}`} onClick={(f) => func(el.name)}>{el.name}</td>
-            <td className="table-col problemset-remove" onClick={e => setModalShow(true)}>Remove</td>
+            {
+                el.name === 'Favorites' ?  <td className="table-col problemset-remove-fav">Remove</td> : <td className="table-col problemset-remove" onClick={e => setModalShow(true)}>Remove</td>
+            }
             <Modal onHide={() => setModalShow(false)} show={modalShow} handleDeleteEle={handleDeleteEle} hideModal={hideModal} />
         </tr>
     )
