@@ -3,7 +3,7 @@ import QuestionDetail from '../../pages/questionDetail/questionDetail';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import TopicWiseQuestions from '../topicWiseQuestions/topicWiseQuestions';
 import ProblemSet from './problemSet';
-import Errorpage from '../errorpage';
+import Errorpage from '../error/errorpage';
 
 
 const ProblemPage = ({ match }) => {

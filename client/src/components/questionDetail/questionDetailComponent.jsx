@@ -65,7 +65,7 @@ function QuestionDetailComponent({ question, fetchUser, user, fetchQuestion, pro
                     <div className="fav">
                         {
                             user ?
-                                isfav ? <p className="message">Added to favorite</p> :
+                                isfav ? <button className="message">Added to Favorites</button> :
                                     <button className="button" onClick={(e) => { e.preventDefault(); return handleClick(question) }} >Add to Favorites</button>
                                 :
                                 null

@@ -40,8 +40,12 @@
 					text-decoration: underline;
 				}
 				.message {
-					font-size: 22px;
+					font-size: 20px;
+					background-color: #121212;
 					color: #0ead69;
+					border: transparent;
+					height: 2.5rem;
+					cursor: default;
 				}
 			}
 		}

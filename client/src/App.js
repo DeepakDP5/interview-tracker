@@ -8,7 +8,7 @@ import { fetchUser, logoutUser } from './redux/user/userActions';
 import { connect } from 'react-redux';
 import ForgotPasswordPage from './pages/login/forgotPassword';
 import ProfilePage from './pages/user/profilePage';
-import Errorpage from './pages/errorpage';
+import Errorpage from './pages/error/errorpage';
 import { getUserSelector } from './redux/user/userSelector';
 import PersonalProblemset from './pages/personalProblemSet/personalProblemset';
 import Footer from './components/footer/footer';
