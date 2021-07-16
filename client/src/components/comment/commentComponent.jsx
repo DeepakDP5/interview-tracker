@@ -3,7 +3,7 @@ import Comment from './comment';
 import './comment.scss';
 
 const EmptyComponent = () => (
-    <p>No Comments yet.</p>
+    <p className="no-comments">No comments yet.</p>
 );
 
 function CommentComponent({ comments, user, idx }) {

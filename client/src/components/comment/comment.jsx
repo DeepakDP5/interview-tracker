@@ -2,6 +2,7 @@ import React from 'react';
 import { deleteComment } from '../../api/index';
 import { fetchQuestion } from '../../redux/question/questionAction.js';
 import { connect } from 'react-redux';
+import { baseURI } from '../../api/index';
 
 import './comment.scss';
 
@@ -36,11 +37,10 @@ function Comment({ comment, user, fetchQuestion, idx }) {
     }
 
     return (
-
         <div className="comment-wrapper">
             <div className="comment-header">
                 <div className="image">
-                    <img className="user-image" src={`http://localhost:4000/images/user/${comment?.user.photo}`} alt=''></img>
+                    <img className="user-image" src={`${baseURI}/images/user/${comment?.user.photo}`} alt=''></img>
                 </div>
                 <div className="username">
                     <p className="name">{comment?.user.username}</p>

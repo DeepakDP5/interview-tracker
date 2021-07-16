@@ -63,7 +63,7 @@ export const fetchUser = () => {
             dispatch(fetchSuccess(user));
         } catch (err) {
             dispatch(fetchFail(err.response?.data.message));
-            alert(err.response?.data.message);
+            alert(err.response?.data.message ? err.response.data.message : 'Website is under maintainence');
         }
     }
 };

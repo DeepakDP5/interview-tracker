@@ -28,7 +28,9 @@ export const fetchQuestions = (page, questionPerPage) => {
             const res = await getQuestions(page, questionPerPage);
             dispatch(fetchingSuccess(res.data.data.question));
         } catch (err) {
-
+            dispatch(fetchFail(err.response?.data.error));
+            alert(err.response?.data.error ? err.response.data.error : 'Website is under maintainence');
+            window.location.href = '/';
         }
 
     }
@@ -41,9 +43,9 @@ export const fetchTopicwise = (topic) => {
             const res = await getTopicwiseQuestion(topic);
             dispatch(fetchingSuccess(res.data.data.questions));
         } catch (err) {
-            dispatch(fetchFail(err.response.data.message));
-            alert(err.response.data.message);
+            dispatch(fetchFail(err.response?.data.message));
+            alert(err.response?.data.message ? err.response.data.message : 'Website is under maintainence');
+            window.location.href = '/';
         }
-
     }
 };

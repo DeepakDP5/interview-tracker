@@ -30,6 +30,7 @@ export const fetchQuestion = (id) => {
         } catch (err) {
             dispatch(fetchFail(err.response?.data.message));
             alert(err.response?.data.message);
+            window.location.href = '/';
         }
     }
 };

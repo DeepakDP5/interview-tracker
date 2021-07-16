@@ -112,7 +112,7 @@ exports.forgotPassword = aEH(async (req, res, next) => {
         const options = {
             email: user.email,
             subject: "Reset Password link",
-            message: `Click <a href = "${link}">here</a> to reset your Interview Tracker account password. <br> Ignore if you did'nt request a password change.`,
+            message: `Click <a href = "${link}">here</a> to reset your Interview Tracker account password. <br> Ignore if you didn't request a password change.`,
         };
         await sendEmail(options);
         res.status(200).json({
@@ -136,7 +136,7 @@ exports.isLoggedIn = aEH(async (req, res, next) => {
     } else if (req.cookies.jwt) {
         token = req.cookies.jwt;
     }
-    if (!token) return next(new Err("Not Logged In"), 400);
+    if (!token) return next(new Err("Not logged in"), 400);
     let jsonPayload = await jwt.verify(token, process.env.SECRETKEY);
     const user = await User.findById(jsonPayload.id);
     if (!user) return next(new Err("User does not exist", 400));
@@ -149,7 +149,7 @@ exports.changePassword = aEH(async (req, res, next) => {
     if (newPassword !== confirmNP) next(new Err("Passwords do not match"), 400);
     const user = await User.findById(req.user.id).select("+password");
     if (await bcrypt.compare(newPassword, user.password))
-        next(new Err("New Password cannot be Old Password"), 400);
+        next(new Err("New password cannot be old password"), 400);
     if (await bcrypt.compare(currPassword, user.password)) {
         user.password = newPassword;
         await user.save();
@@ -177,7 +177,7 @@ exports.resetPassword = aEH(async (req, res, next) => {
 exports.logOut = (req, res, next) => {
     res.cookie("jwt", "");
     res.status(200).json({
-        messsage: "Logged Out",
+        messsage: "Logged out",
     });
 };
 

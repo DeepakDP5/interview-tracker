@@ -28,7 +28,9 @@ export const fetchObject = (username) => {
             const res = await getFriend(username);
             dispatch(fetchingSuccess(res.data.user));
         } catch (err) {
-
+            dispatch(fetchFail(err.response?.data.error));
+            alert('User not found');
+            window.location.href = '/friends';
         }
     }
 };

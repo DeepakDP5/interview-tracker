@@ -11,6 +11,7 @@ import ConfirmRemoveCompoment from '../confirmRemoveForm/confirmRemoveCompoment'
 import ModalWrapper from '../modal/modal';
 import queryString from 'query-string';
 import ObjectProblemsetListItem from './objectProblemsetListItem';
+import { baseURI } from '../../api/index';
 
 import './objectAction.scss';
 
@@ -109,7 +110,7 @@ const ObjectActionComponent = ({ object, user, fetchUser, fetchObject }) => {
                 <div className="object-detail-wrapper">
                     <div className="object-details">
                         <div className="detail-component">
-                            <img className="object-image" src={`http://localhost:4000/images/user/${photo}`} alt={username}></img><br />
+                            <img className="object-image" src={`${baseURI}/images/user/${photo}`} alt={username}></img><br />
                             <p className="object-username">{username}</p>
                             {
                                 isFriend === 0 ?
